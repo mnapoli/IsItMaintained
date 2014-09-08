@@ -1,0 +1,6 @@
+app/cache/*
+!app/cache/.gitkeep
+app/config/parameters.php
+vendor/
+composer.phar
+composer.lock
