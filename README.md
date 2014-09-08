@@ -2,6 +2,8 @@
 
 Monitoring open source projects activity.
 
+![](web/img/dude.png)
+
 ## Metrics
 
 Done:
