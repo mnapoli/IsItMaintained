@@ -9,7 +9,7 @@ return [
         'controller' => HomeController::class,
     ],
     'badge' => [
-        'pattern'    => '/img/{user}/{repository}.svg',
+        'pattern'    => '/badge/{user}/{repository}.svg',
         'controller' => BadgeController::class,
     ],
 ];

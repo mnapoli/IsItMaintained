@@ -19,7 +19,7 @@ Ideas:
     $ cd web/
     $ php -S 0.0.0.0:8000 index.php
 
-Visit an URL like [http://localhost:8000/img/mnapoli/php-di.svg](http://localhost:8000/img/mnapoli/php-di.svg) (badge).
+Visit an URL like [http://localhost:8000/badge/mnapoli/php-di.svg](http://localhost:8000/badge/mnapoli/php-di.svg) (badge).
 
 Or run `bin/demo.php`.
 
