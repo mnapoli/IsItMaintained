@@ -17,7 +17,8 @@
         "mnapoli/php-di": "4.4.x-dev",
         "knplabs/github-api": "~1.3",
         "aura/router": "~2.0",
-        "badges/poser": "1.0.*@dev"
+        "badges/poser": "1.0.*@dev",
+        "twig/twig": "~1.16"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"

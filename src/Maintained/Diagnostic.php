@@ -30,7 +30,7 @@ class Diagnostic
     public function __construct($repository)
     {
         $this->github = new Client(
-            new CachedHttpClient(['cache_dir' => __DIR__ . '/../../app/cache'])
+            new CachedHttpClient(['cache_dir' => __DIR__ . '/../../app/cache/github'])
         );
 
         list($user, $repository) = explode('/', $repository, 2);

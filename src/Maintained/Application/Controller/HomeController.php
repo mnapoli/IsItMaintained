@@ -7,8 +7,8 @@ namespace Maintained\Application\Controller;
  */
 class HomeController
 {
-    public function __invoke()
+    public function __invoke(\Twig_Environment $twig)
     {
-        echo 'Hello world';
+        echo $twig->render('home.twig');
     }
 }
