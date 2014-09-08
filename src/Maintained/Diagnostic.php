@@ -29,6 +29,7 @@ class Diagnostic
 
     public function __construct($repository)
     {
+        // TODO dependency injection
         $this->github = new Client(
             new CachedHttpClient(['cache_dir' => __DIR__ . '/../../app/cache/github'])
         );
