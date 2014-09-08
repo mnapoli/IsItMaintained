@@ -21,3 +21,7 @@ Ideas:
 Visit an URL like [http://localhost:8000/img/mnapoli/php-di.svg](http://localhost:8000/img/mnapoli/php-di.svg) (badge).
 
 Or run `bin/demo.php`.
+
+## Requirements
+
+- PHP 5.6
