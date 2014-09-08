@@ -2,7 +2,11 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$repositories = require __DIR__ . '/../app/config/repositories.php';
+$repositories = [
+    'mnapoli/PHP-DI',
+    'Atlantic18/DoctrineExtensions',
+    'Ocramius/ProxyManager',
+];
 
 foreach ($repositories as $repository) {
     $diagnostic = new \Maintained\Diagnostic($repository);

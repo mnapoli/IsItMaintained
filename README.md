@@ -6,4 +6,6 @@ Monitoring open source projects activity.
 
     $ php -S 0.0.0.0:8000 web/index.php
 
-Visit an URL like http://localhost:8000/img/mnapoli/php-di.svg.
+Visit an URL like [http://localhost:8000/img/mnapoli/php-di.svg](http://localhost:8000/img/mnapoli/php-di.svg).
+
+Or run `bin/demo.php`.
