@@ -13,7 +13,11 @@ $container = $builder->build();
 $router = $container->get(Router::class);
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$requestParameters = $router->match($url, $_SERVER)->params;
+$route = $router->match($url, $_SERVER);
+if (! $route) {
+    return false;
+}
+$requestParameters = $route->params;
 $controller = $requestParameters['controller'];
 
 // Handle the case where the controller is an invokable class

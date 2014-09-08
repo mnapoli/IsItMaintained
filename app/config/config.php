@@ -29,8 +29,6 @@ return [
 
     Twig_Environment::class => factory(function () {
         $loader = new Twig_Loader_Filesystem(__DIR__ . '/../../src/Maintained/Application/View');
-        return new Twig_Environment($loader, [
-            'cache' => __DIR__ . '/../cache/twig',
-        ]);
+        return new Twig_Environment($loader);
     }),
 ];
