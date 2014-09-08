@@ -18,7 +18,8 @@
         "knplabs/github-api": "~1.3",
         "aura/router": "~2.0",
         "badges/poser": "1.0.*@dev",
-        "twig/twig": "~1.16"
+        "twig/twig": "~1.16",
+        "doctrine/cache": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"
