@@ -1,16 +1,12 @@
 {
-    "name": "missive",
+    "name": "maintained",
     "version": "0.0.0",
-    "homepage": "https://github.com/mnapoli/Missive",
-    "license": "proprietary",
+    "homepage": "https://github.com/mnapoli/Maintained",
+    "license": "MIT",
     "private": true,
     "dependencies": {
         "jquery": "~1.11",
         "bootstrap": "~3.2",
-        "fontawesome": "*",
-        "angular": "~1.2",
-        "angular-ui-bootstrap-bower": "~0.11",
-        "angular-ui-select2": "~0.0.5",
-        "select2-bootstrap-css": "bootstrap3"
+        "fontawesome": "*"
     }
 }
