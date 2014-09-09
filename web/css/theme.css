@@ -223,6 +223,47 @@ section.success a {
     margin: 30px 0 10px;
 }
 
+.btn-default {
+    color: #ffffff;
+    background-color: #95a5a6;
+    border-color: #95a5a6;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+    color: #ffffff;
+    background-color: #798d8f;
+    border-color: #74898a;
+}
+
+.btn-primary {
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    background-color: #1a242f;
+    border-color: #161f29;
+}
+
+.btn-success {
+    background-color: #18bc9c;
+    border-color: #18bc9c;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success {
+    background-color: #128f76;
+    border-color: #11866f;
+}
+
 .btn-outline {
     margin-top: 15px;
     border: solid 2px #fff;
