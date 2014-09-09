@@ -7,7 +7,7 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>{{ repository }}</h2>
+                    <h2><a href="https://github.com/{{ repository }}">{{ repository }}</a></h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -20,7 +20,7 @@
                         <strong class="text-primary">{{ resolutionTime.formatLong() }}</strong>
                     </p>
                     <p>
-                        <img src="/badge/{{ repository }}.svg">
+                        {{ badge(repository) }}
                     </p>
                     <p class="small">
                         The resolution time is the median time an issue stays open.

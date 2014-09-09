@@ -5,6 +5,7 @@ use Aura\Router\RouterFactory;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Interop\Container\ContainerInterface;
+use Maintained\Application\Twig\TwigExtension;
 use Maintained\Statistics\CachedStatisticsProvider;
 use Maintained\Statistics\StatisticsComputer;
 use Maintained\Statistics\StatisticsProvider;
@@ -33,9 +34,13 @@ return [
         return new Poser([new SvgRender()]);
     }),
 
-    Twig_Environment::class => factory(function () {
+    Twig_Environment::class => factory(function (ContainerInterface $c) {
         $loader = new Twig_Loader_Filesystem(__DIR__ . '/../../src/Maintained/Application/View');
-        return new Twig_Environment($loader);
+        $twig = new Twig_Environment($loader);
+
+        $twig->addExtension($c->get(TwigExtension::class));
+
+        return $twig;
     }),
 
     Cache::class => object(FilesystemCache::class)
