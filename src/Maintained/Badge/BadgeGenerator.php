@@ -28,6 +28,6 @@ class BadgeGenerator implements BadgeProvider
 
         $median = $diagnostic->computeMedian()->formatShort();
 
-        return $this->poser->generate('resolution', $median, '428F7E', 'svg');
+        return $this->poser->generate('resolution', $median, '18bc9c', 'svg');
     }
 }
