@@ -3,6 +3,7 @@
 namespace Maintained\Statistics;
 
 use Github\Client;
+use Github\ResultPager;
 use Maintained\Issue;
 use Maintained\TimeInterval;
 
@@ -115,7 +116,13 @@ class StatisticsComputer implements StatisticsProvider
     {
         /** @var \GitHub\Api\Issue $issueApi */
         $issueApi = $this->github->api('issue');
-        $issues = $issueApi->all($user, $repository, ['state' => 'all']);
+
+        $paginator = new ResultPager($this->github);
+        $issues = $paginator->fetchAll($issueApi, 'all', [
+            $user,
+            $repository,
+            ['state' => 'all'],
+        ]);
 
         $issues = array_map(function (array $data) {
             return Issue::fromArray($data);

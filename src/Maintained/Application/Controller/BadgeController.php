@@ -15,7 +15,7 @@ use PUGX\Poser\Poser;
 class BadgeController
 {
     const BADGE_RESOLUTION = 'resolution';
-    const BADGE_OPEN_RATIO = 'opened';
+    const BADGE_OPEN_ISSUES = 'open';
 
     const COLOR_OK = '18bc9c';
     const COLOR_WARNING = 'CC9237';
@@ -39,8 +39,8 @@ class BadgeController
             $statistics = $this->statisticsProvider->getStatistics($user, $repository);
 
             switch ($badge) {
-                case self::BADGE_OPEN_RATIO:
-                    $badge = $this->createOpenRatioBadge($statistics);
+                case self::BADGE_OPEN_ISSUES:
+                    $badge = $this->createOpenIssuesBadge($statistics);
                     break;
                 case self::BADGE_RESOLUTION:
                 default:
@@ -78,7 +78,7 @@ class BadgeController
      * @param Statistics $statistics
      * @return Image
      */
-    private function createOpenRatioBadge(Statistics $statistics)
+    private function createOpenIssuesBadge(Statistics $statistics)
     {
         $ratio = $statistics->openIssuesRatio;
 
@@ -90,6 +90,6 @@ class BadgeController
             $color = self::COLOR_DANGER;
         }
 
-        return $this->poser->generate('opened issues', round($ratio * 100) . '%', $color, 'svg');
+        return $this->poser->generate('open issues', round($ratio * 100) . '%', $color, 'svg');
     }
 }
