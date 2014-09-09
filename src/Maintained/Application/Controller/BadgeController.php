@@ -11,8 +11,9 @@ class BadgeController
 {
     public function __invoke($user, $repository, BadgeProvider $badgeProvider)
     {
-        header('Content-type: image/svg+xml');
+        $badge = $badgeProvider->getResolutionBadge($user, $repository);
 
-        echo $badgeProvider->getResolutionBadge($user, $repository);
+        header('Content-type: image/svg+xml');
+        echo $badge;
     }
 }
