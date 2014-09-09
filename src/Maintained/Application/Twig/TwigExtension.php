@@ -24,10 +24,10 @@ class TwigExtension extends Twig_Extension
         ];
     }
 
-    public function generateBadge($repository)
+    public function generateBadge($repository, $type = 'resolution')
     {
         return <<<HTML
-<a href="/project/$repository"><img src="/badge/$repository.svg"></a>
+<a href="/project/$repository"><img src="/badge/$type/$repository.svg"></a>
 HTML;
     }
 }

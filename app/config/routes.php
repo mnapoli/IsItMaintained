@@ -14,7 +14,7 @@ return [
         'controller' => ProjectController::class,
     ],
     'badge'   => [
-        'pattern'    => '/badge/{user}/{repository}.svg',
+        'pattern'    => '/badge/{badge}/{user}/{repository}.svg',
         'controller' => BadgeController::class,
     ],
 ];

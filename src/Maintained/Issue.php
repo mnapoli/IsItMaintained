@@ -78,4 +78,12 @@ class Issue
     {
         return $this->openedFor;
     }
+
+    /**
+     * @return bool
+     */
+    public function isOpen()
+    {
+        return $this->open;
+    }
 }

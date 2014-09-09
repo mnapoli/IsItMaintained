@@ -28,6 +28,7 @@ class ProjectController
         echo $this->twig->render('project.twig', [
             'repository'     => $user . '/' . $repository,
             'resolutionTime' => $statistics->resolutionTime,
+            'openedIssues'   => round($statistics->openIssuesRatio * 100),
         ]);
     }
 }

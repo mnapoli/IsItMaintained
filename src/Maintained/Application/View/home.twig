@@ -66,13 +66,19 @@
                 <div class="col-lg-4 col-lg-offset-2">
                     <h3>Resolution time</h3>
                     <p>
-                        Median time needed to close an issue.
+                        Median time needed to close an issue or pull request.
+                    </p>
+                    <p class="small">
+                        Issues or PR opened by the collaborators are ignored.
                     </p>
                 </div>
                 <div class="col-lg-4">
                     <h3>Closed percentage</h3>
                     <p>
-                        Percentage of closed issues.
+                        Percentage of closed issues and pull requests.
+                    </p>
+                    <p class="small">
+                        Issues or PR opened by the collaborators are ignored.
                     </p>
                 </div>
             </div>
@@ -84,80 +90,21 @@
             </div>
 
             <div class="row portfolio">
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/symfony/symfony">
-                            Symfony
-                        </a>
-                    </p>
-                    {{ badge('symfony/symfony') }}
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/Ocramius/ProxyManager">
-                            ProxyManager
-                        </a>
-                    </p>
-                    {{ badge('Ocramius/ProxyManager') }}
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/Atlantic18/DoctrineExtensions">
-                            DoctrineExtensions
-                        </a>
-                    </p>
-                    {{ badge('Atlantic18/DoctrineExtensions') }}
-                </div>
-
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/schmittjoh/serializer">
-                            JMS serializer
-                        </a>
-                    </p>
-                    {{ badge('schmittjoh/serializer') }}
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/PHPOffice/PHPExcel">
-                            PHPExcel
-                        </a>
-                    </p>
-                    {{ badge('PHPOffice/PHPExcel') }}
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/composer/composer">
-                            Composer
-                        </a>
-                    </p>
-                    {{ badge('composer/composer') }}
-                </div>
-
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/Behat/Behat">
-                            Behat
-                        </a>
-                    </p>
-                    {{ badge('Behat/Behat') }}
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/kriswallsmith/assetic">
-                            Assetic
-                        </a>
-                    </p>
-                    {{ badge('kriswallsmith/assetic') }}
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <p>
-                        <a href="/project/sebastianbergmann/phpunit">
-                            PHPUnit
-                        </a>
-                    </p>
-                    {{ badge('sebastianbergmann/phpunit') }}
-                </div>
+                {% for repository, name in projects %}
+                    <div class="col-sm-4 portfolio-item">
+                        <p>
+                            <a href="/project/{{ repository }}">
+                                {{ name }}
+                            </a>
+                        </p>
+                        <p>
+                            {{ badge(repository, 'resolution') }}
+                        </p>
+                        <p>
+                            {{ badge(repository, 'opened') }}
+                        </p>
+                    </div>
+                {% endfor %}
             </div>
 
         </div>

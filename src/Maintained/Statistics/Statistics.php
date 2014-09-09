@@ -12,7 +12,16 @@ use Maintained\TimeInterval;
 class Statistics
 {
     /**
+     * Average time for closing an issue.
+     *
      * @var TimeInterval
      */
     public $resolutionTime;
+
+    /**
+     * Ratio of open issues.
+     *
+     * @var float
+     */
+    public $openIssuesRatio;
 }

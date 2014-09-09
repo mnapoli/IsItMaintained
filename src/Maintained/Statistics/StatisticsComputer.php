@@ -27,10 +27,12 @@ class StatisticsComputer implements StatisticsProvider
     {
         $issues = $this->fetchIssues($user, $repository);
         $collaborators = $this->fetchCollaborators($user, $repository);
+
         $issues = $this->excludeIssuesCreatedByCollaborators($issues, $collaborators);
 
         $statistics = new Statistics();
         $statistics->resolutionTime = $this->computeResolutionTime($issues);
+        $statistics->openIssuesRatio = $this->computeOpenIssueRatio($issues);
 
         return $statistics;
     }
@@ -46,6 +48,27 @@ class StatisticsComputer implements StatisticsProvider
         }, $issues);
 
         return new TimeInterval($this->median($durations));
+    }
+
+    /**
+     * @param Issue[] $issues
+     * @return float
+     */
+    private function computeOpenIssueRatio(array $issues)
+    {
+        if (empty($issues)) {
+            return 0;
+        }
+
+        $openIssues = 0;
+
+        foreach ($issues as $issue) {
+            if ($issue->isOpen()) {
+                $openIssues++;
+            }
+        }
+
+        return $openIssues / count($issues);
     }
 
     /**

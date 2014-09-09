@@ -23,7 +23,24 @@
                         {{ badge(repository) }}
                     </p>
                     <p class="small">
-                        The resolution time is the median time an issue stays open.
+                        The resolution time is the median time an issue or pull request stays open.
+                    </p>
+                    <p class="small">
+                        Issues or PR opened by the collaborators are ignored.
+                    </p>
+
+                    <p>
+                        Open issues:
+                        <strong class="text-primary">{{ openedIssues }}%</strong>
+                    </p>
+                    <p>
+                        {{ badge(repository, 'opened') }}
+                    </p>
+                    <p class="small">
+                        The percentage of open issues and pull requests.
+                    </p>
+                    <p class="small">
+                        Issues or PR opened by the collaborators are ignored.
                     </p>
 
                 </div>
