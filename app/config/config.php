@@ -4,7 +4,10 @@ use Aura\Router\Router;
 use Aura\Router\RouterFactory;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
+use Github\Client;
+use Github\HttpClient\CachedHttpClient;
 use Interop\Container\ContainerInterface;
+use Maintained\Application\Command\ClearCacheCommand;
 use Maintained\Application\Twig\TwigExtension;
 use Maintained\Statistics\CachedStatisticsProvider;
 use Maintained\Statistics\StatisticsComputer;
@@ -16,6 +19,7 @@ use function DI\link;
 use function DI\object;
 
 return [
+    // Routing
     'routes' => require __DIR__ . '/routes.php',
     Router::class => factory(function (ContainerInterface $c) {
         $router = (new RouterFactory())->newInstance();
@@ -30,10 +34,12 @@ return [
         return $router;
     }),
 
+    // Badge generator
     Poser::class => factory(function () {
         return new Poser([new SvgRender()]);
     }),
 
+    // Twig
     Twig_Environment::class => factory(function (ContainerInterface $c) {
         $loader = new Twig_Loader_Filesystem(__DIR__ . '/../../src/Maintained/Application/View');
         $twig = new Twig_Environment($loader);
@@ -43,10 +49,27 @@ return [
         return $twig;
     }),
 
-    Cache::class => object(FilesystemCache::class)
-        ->constructor(__DIR__ . '/../../app/cache/app')
-        ->method('setNamespace', 'Maintained'),
+    // Cache
+    'cache.directory' => __DIR__ . '/../../app/cache',
+    Cache::class => factory(function (ContainerInterface $c) {
+        $cache = new FilesystemCache($c->get('cache.directory') . '/app');
+        $cache->setNamespace('Maintained');
+
+        return $cache;
+    }),
+
+    // GitHub API
+    Client::class => factory(function (ContainerInterface $c) {
+        $cacheDirectory = $c->get('cache.directory') . '/github';
+        return new Client(
+            new CachedHttpClient(['cache_dir' => $cacheDirectory])
+        );
+    }),
 
     StatisticsProvider::class => object(CachedStatisticsProvider::class)
         ->constructorParameter('wrapped', link(StatisticsComputer::class)),
+
+    ClearCacheCommand::class => object()
+        ->lazy()
+        ->constructorParameter('cacheDirectory', link('cache.directory')),
 ];

@@ -25,6 +25,10 @@ Ideas:
 
 The first time a badge is generated takes a few seconds, then it is cached. Be patient.
 
+## Commands
+
+- `bin/console cache:clear`: clears all the caches
+
 ## Requirements
 
 - PHP 5.6

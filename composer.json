@@ -20,7 +20,9 @@
         "aura/router": "~2.0",
         "badges/poser": "1.0.*@dev",
         "twig/twig": "~1.16",
-        "doctrine/cache": "~1.0"
+        "doctrine/cache": "~1.0",
+        "symfony/console": "~2.5",
+        "symfony/filesystem": "~2.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"

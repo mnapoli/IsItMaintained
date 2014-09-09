@@ -1,13 +1,12 @@
 <?php
 
 use Aura\Router\Router;
-use DI\ContainerBuilder;
+use DI\Container;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$builder = new ContainerBuilder();
-$builder->addDefinitions(__DIR__ . '/../app/config/config.php');
-$container = $builder->build();
+/** @var Container $container */
+$container = require __DIR__ . '/../app/container.php';
 
 /** @var Router $router */
 $router = $container->get(Router::class);
