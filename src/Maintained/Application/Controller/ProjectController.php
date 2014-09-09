@@ -2,6 +2,8 @@
 
 namespace Maintained\Application\Controller;
 
+use DI\Annotation\Inject;
+use Github\Exception\RuntimeException;
 use Maintained\Statistics\StatisticsProvider;
 
 /**
@@ -23,7 +25,12 @@ class ProjectController
 
     public function __invoke($user, $repository)
     {
-        $statistics = $this->statisticsProvider->getStatistics($user, $repository);
+        try {
+            $statistics = $this->statisticsProvider->getStatistics($user, $repository);
+        } catch (RuntimeException $e) {
+            echo $this->twig->render('github-limit.twig');
+            return;
+        }
 
         echo $this->twig->render('project.twig', [
             'repository'     => $user . '/' . $repository,

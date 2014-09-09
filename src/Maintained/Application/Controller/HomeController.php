@@ -12,15 +12,12 @@ class HomeController
     public function __invoke(Twig_Environment $twig)
     {
         $demoProjects = [
-            'symfony/symfony'               => 'Symfony',
+            'sebastianbergmann/phpunit'     => 'PHPUnit',
+            'Behat/Behat'                   => 'Behat',
             'Ocramius/ProxyManager'         => 'ProxyManager',
             'Atlantic18/DoctrineExtensions' => 'DoctrineExtensions',
             'schmittjoh/serializer'         => 'JMS Serializer',
-            'PHPOffice/PHPExcel'            => 'PHPExcel',
-            'composer/composer'             => 'Composer',
-            'Behat/Behat'                   => 'Behat',
             'kriswallsmith/assetic'         => 'Assetic',
-            'sebastianbergmann/phpunit'     => 'PHPUnit',
         ];
 
         echo $twig->render('home.twig', [

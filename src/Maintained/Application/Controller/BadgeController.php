@@ -3,7 +3,7 @@
 namespace Maintained\Application\Controller;
 
 use DI\Annotation\Inject;
-use Github\Exception\ApiLimitExceedException;
+use Github\Exception\RuntimeException;
 use Maintained\Statistics\Statistics;
 use Maintained\Statistics\StatisticsProvider;
 use PUGX\Poser\Image;
@@ -47,7 +47,7 @@ class BadgeController
                     $badge = $this->createResolutionBadge($statistics);
                     break;
             }
-        } catch (ApiLimitExceedException $e) {
+        } catch (RuntimeException $e) {
             $badge = $this->poser->generate('github-api', 'limit', self::COLOR_DANGER, 'svg');
         }
 
