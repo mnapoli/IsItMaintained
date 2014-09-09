@@ -35,5 +35,7 @@ class ClearCacheCommand extends Command
 
         $fs->remove($this->cacheDirectory . '/app');
         $fs->remove($this->cacheDirectory . '/github');
+
+        $output->writeln('Caches cleared');
     }
 }
