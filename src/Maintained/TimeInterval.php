@@ -46,7 +46,7 @@ class TimeInterval
             case $this->seconds < self::TO_MINUTE:
                 return sprintf('%d s', $this->seconds);
             case $this->seconds < self::TO_HOUR:
-                return sprintf('%d m', $this->toMinutes());
+                return sprintf('%d min', $this->toMinutes());
             case $this->seconds < self::TO_DAY:
                 return sprintf('%d h', $this->toHours());
             default:
