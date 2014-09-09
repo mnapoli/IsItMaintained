@@ -5,9 +5,6 @@ use Aura\Router\RouterFactory;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Interop\Container\ContainerInterface;
-use Maintained\Badge\BadgeGenerator;
-use Maintained\Badge\BadgeProvider;
-use Maintained\Badge\CachedBadgeProvider;
 use Maintained\Statistics\CachedStatisticsProvider;
 use Maintained\Statistics\StatisticsComputer;
 use Maintained\Statistics\StatisticsProvider;
@@ -44,9 +41,6 @@ return [
     Cache::class => object(FilesystemCache::class)
         ->constructor(__DIR__ . '/../../app/cache/app')
         ->method('setNamespace', 'Maintained'),
-
-    BadgeProvider::class => object(CachedBadgeProvider::class)
-        ->constructorParameter('wrapped', link(BadgeGenerator::class)),
 
     StatisticsProvider::class => object(CachedStatisticsProvider::class)
         ->constructorParameter('wrapped', link(StatisticsComputer::class)),

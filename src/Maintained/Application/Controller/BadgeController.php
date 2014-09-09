@@ -2,8 +2,9 @@
 
 namespace Maintained\Application\Controller;
 
+use DI\Annotation\Inject;
 use Github\Exception\ApiLimitExceedException;
-use Maintained\Badge\BadgeProvider;
+use Maintained\Statistics\StatisticsProvider;
 use PUGX\Poser\Poser;
 
 /**
@@ -13,9 +14,9 @@ class BadgeController
 {
     /**
      * @Inject
-     * @var BadgeProvider
+     * @var StatisticsProvider
      */
-    private $badgeProvider;
+    private $statisticsProvider;
 
     /**
      * @Inject
@@ -26,7 +27,9 @@ class BadgeController
     public function __invoke($user, $repository)
     {
         try {
-            $badge = $this->badgeProvider->getResolutionBadge($user, $repository);
+            $statistics = $this->statisticsProvider->getStatistics($user, $repository);
+
+            $badge = $this->poser->generate('resolution', $statistics->resolutionTime, '18bc9c', 'svg');
         } catch (ApiLimitExceedException $e) {
             $badge = $this->poser->generate('github-api', 'limit', '9C3838', 'svg');
         }
