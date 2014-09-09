@@ -12,6 +12,10 @@ use PUGX\Poser\Poser;
  */
 class BadgeController
 {
+    const COLOR_OK = '18bc9c';
+    const COLOR_WARNING = 'CC9237';
+    const COLOR_DANGER = '9C3838';
+
     /**
      * @Inject
      * @var StatisticsProvider
@@ -29,9 +33,19 @@ class BadgeController
         try {
             $statistics = $this->statisticsProvider->getStatistics($user, $repository);
 
-            $badge = $this->poser->generate('resolution', $statistics->resolutionTime, '18bc9c', 'svg');
+            $days = $statistics->resolutionTime->toDays();
+
+            if ($days < 2) {
+                $color = self::COLOR_OK;
+            } elseif ($days < 8) {
+                $color = self::COLOR_WARNING;
+            } else {
+                $color = self::COLOR_DANGER;
+            }
+
+            $badge = $this->poser->generate('resolution', $statistics->resolutionTime, $color, 'svg');
         } catch (ApiLimitExceedException $e) {
-            $badge = $this->poser->generate('github-api', 'limit', '9C3838', 'svg');
+            $badge = $this->poser->generate('github-api', 'limit', self::COLOR_DANGER, 'svg');
         }
 
         header('Content-type: image/svg+xml');
