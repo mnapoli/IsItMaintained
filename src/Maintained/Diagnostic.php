@@ -55,7 +55,7 @@ class Diagnostic
     }
 
     /**
-     * @return float
+     * @return TimeInterval
      */
     public function computeAverage()
     {
@@ -67,6 +67,9 @@ class Diagnostic
         return new TimeInterval($average);
     }
 
+    /**
+     * @return TimeInterval
+     */
     public function computeMedian()
     {
         $durations = array_map(function (Issue $issue) {

@@ -11,7 +11,7 @@ use Doctrine\Common\Cache\Cache;
  */
 class CachedBadgeProvider implements BadgeProvider
 {
-    const CACHE_NAMESPACE = 'maintained/';
+    const CACHE_NAMESPACE = 'badge/';
 
     /**
      * @var Cache

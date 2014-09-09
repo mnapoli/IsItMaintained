@@ -8,6 +8,9 @@ use Interop\Container\ContainerInterface;
 use Maintained\Badge\BadgeGenerator;
 use Maintained\Badge\BadgeProvider;
 use Maintained\Badge\CachedBadgeProvider;
+use Maintained\Statistics\CachedStatisticsProvider;
+use Maintained\Statistics\StatisticsComputer;
+use Maintained\Statistics\StatisticsProvider;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgRender;
 use function DI\factory;
@@ -39,8 +42,12 @@ return [
     }),
 
     Cache::class => object(FilesystemCache::class)
-        ->constructor(__DIR__ . '/../../app/cache/badges'),
+        ->constructor(__DIR__ . '/../../app/cache/app')
+        ->method('setNamespace', 'Maintained'),
 
     BadgeProvider::class => object(CachedBadgeProvider::class)
         ->constructorParameter('wrapped', link(BadgeGenerator::class)),
+
+    StatisticsProvider::class => object(CachedStatisticsProvider::class)
+        ->constructorParameter('wrapped', link(StatisticsComputer::class)),
 ];

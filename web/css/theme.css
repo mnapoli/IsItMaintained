@@ -27,6 +27,7 @@ body {
     line-height: 1.42857143;
     color: #2c3e50;
     background-color: #ffffff;
+    padding-top: 50px;
 }
 
 p {
@@ -107,7 +108,7 @@ header {
 }
 
 header .container {
-    padding-top: 100px;
+    padding-top: 40px;
     padding-bottom: 50px;
 }
 
@@ -130,8 +131,10 @@ header .intro-text .skills {
 }
 
 @media(min-width:768px) {
+    body {
+        padding-top: 100px;
+    }
     header .container {
-        padding-top: 140px;
         padding-bottom: 100px;
     }
 

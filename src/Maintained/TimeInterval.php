@@ -55,6 +55,25 @@ class TimeInterval
     }
 
     /**
+     * Format to a long display string.
+     *
+     * @return string
+     */
+    public function formatLong()
+    {
+        switch (true) {
+            case $this->seconds < self::TO_MINUTE:
+                return sprintf('%d second(s)', $this->seconds);
+            case $this->seconds < self::TO_HOUR:
+                return sprintf('%d minute(s)', $this->toMinutes());
+            case $this->seconds < self::TO_DAY:
+                return sprintf('%d hour(s)', $this->toHours());
+            default:
+                return sprintf('%d day(s)', $this->toDays());
+        }
+    }
+
+    /**
      * @return int
      */
     public function toSeconds()
