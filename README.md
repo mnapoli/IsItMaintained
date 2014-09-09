@@ -25,6 +25,9 @@ Ideas:
 
 The first time a badge is generated takes a few seconds, then it is cached. Be patient.
 
+GitHub has an API rate limit that is reached very easily. To circumvent that, you can generate an
+API token (https://github.com/settings/applications) and set it in `parameters.php`.
+
 ## Commands
 
 - `bin/console cache:clear`: clears all the caches

@@ -59,11 +59,20 @@ return [
     }),
 
     // GitHub API
+    'github.auth_token' => null,
     Client::class => factory(function (ContainerInterface $c) {
         $cacheDirectory = $c->get('cache.directory') . '/github';
-        return new Client(
+
+        $client = new Client(
             new CachedHttpClient(['cache_dir' => $cacheDirectory])
         );
+
+        $authToken = $c->get('github.auth_token');
+        if ($authToken) {
+            $client->authenticate($authToken, null, Client::AUTH_HTTP_TOKEN);
+        }
+
+        return $client;
     }),
 
     StatisticsProvider::class => object(CachedStatisticsProvider::class)

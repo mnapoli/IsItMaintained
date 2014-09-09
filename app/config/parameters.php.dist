@@ -1,0 +1,7 @@
+<?php
+
+// Copy that file to parameters.php
+
+return [
+    'github.auth_token' => null,
+];

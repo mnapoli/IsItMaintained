@@ -14,9 +14,9 @@ class HomeController
         $demoProjects = [
             'sebastianbergmann/phpunit'     => 'PHPUnit',
             'Behat/Behat'                   => 'Behat',
-            'Ocramius/ProxyManager'         => 'ProxyManager',
             'Atlantic18/DoctrineExtensions' => 'DoctrineExtensions',
             'schmittjoh/serializer'         => 'JMS Serializer',
+            'Ocramius/ProxyManager'         => 'ProxyManager',
             'kriswallsmith/assetic'         => 'Assetic',
         ];
 
