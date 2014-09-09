@@ -28,3 +28,4 @@ The first time a badge is generated takes a few seconds, then it is cached. Be p
 ## Requirements
 
 - PHP 5.6
+- GD extension (`php5-gd`)
