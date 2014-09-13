@@ -20,7 +20,7 @@
                         <strong class="text-primary">{{ resolutionTime.formatLong() }}</strong>
                     </p>
                     <p>
-                        {{ badge(repository, 'resolution') }}
+                        {{ badgeHtml(repository, 'resolution') }}
                     </p>
                     <p class="small">
                         The resolution time is the median time an issue or pull request stays open.
@@ -28,13 +28,23 @@
                     <p class="small">
                         Issues or PR opened by the collaborators are ignored.
                     </p>
+                    <p class="input-group input-group-sm">
+                        <span class="input-group-addon">Image:</span>
+                        <input type="text" value="{{ badgeUrl(repository, 'resolution', true) }}"
+                               class="form-control select-all">
+                    </p>
+                    <p class="input-group input-group-sm">
+                        <span class="input-group-addon">Markdown:</span>
+                        <input type="text" value="{{ badgeMarkdown(repository, 'resolution') }}"
+                               class="form-control select-all">
+                    </p>
 
                     <p>
                         Open issues:
                         <strong class="text-primary">{{ openedIssues }}%</strong>
                     </p>
                     <p>
-                        {{ badge(repository, 'open') }}
+                        {{ badgeHtml(repository, 'open') }}
                     </p>
                     <p class="small">
                         The percentage of open issues and pull requests.
@@ -42,11 +52,29 @@
                     <p class="small">
                         Issues or PR opened by the collaborators are ignored.
                     </p>
+                    <p class="input-group input-group-sm">
+                        <span class="input-group-addon">Image:</span>
+                        <input type="text" value="{{ badgeUrl(repository, 'open', true) }}"
+                               class="form-control select-all">
+                    </p>
+                    <p class="input-group input-group-sm">
+                        <span class="input-group-addon">Markdown:</span>
+                        <input type="text" value="{{ badgeMarkdown(repository, 'open') }}"
+                               class="form-control select-all">
+                    </p>
 
                 </div>
             </div>
 
         </div>
     </section>
+
+    <script>
+        $(function () {
+            $('.select-all').on('click', function () {
+                $(this).select();
+            });
+        });
+    </script>
 
 {% endblock %}

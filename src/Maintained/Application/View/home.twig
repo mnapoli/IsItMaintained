@@ -93,15 +93,15 @@
                 {% for repository, name in projects %}
                     <div class="col-sm-4 portfolio-item">
                         <p>
-                            <a href="/project/{{ repository }}">
+                            <a href="{{ projectUrl(repository) }}">
                                 {{ name }}
                             </a>
                         </p>
                         <p>
-                            {{ badge(repository, 'resolution') }}
+                            {{ badgeHtml(repository, 'resolution') }}
                         </p>
                         <p>
-                            {{ badge(repository, 'open') }}
+                            {{ badgeHtml(repository, 'open') }}
                         </p>
                     </div>
                 {% endfor %}

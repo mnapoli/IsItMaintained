@@ -2,6 +2,7 @@
 
 use Aura\Router\Router;
 use Aura\Router\RouterFactory;
+use DI\Container;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Github\Client;
@@ -19,6 +20,10 @@ use function DI\link;
 use function DI\object;
 
 return [
+    ContainerInterface::class => link(Container::class),
+
+    'baseUrl' => 'http://isitmaintained.com',
+
     // Routing
     'routes' => require __DIR__ . '/routes.php',
     Router::class => factory(function (ContainerInterface $c) {
