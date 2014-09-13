@@ -15,7 +15,8 @@ $(function () {
         }
 
         resultDiv.append('<h4>' + repository + '</h4>')
-            .append('<p><a href="/project/' + repository + '"><img src="/badge/' + repository + '.svg"></a></p>')
+            .append('<p><a href="/project/' + repository + '"><img src="/badge/resolution/' + repository + '.svg"></a></p>')
+            .append('<p><a href="/project/' + repository + '"><img src="/badge/open/' + repository + '.svg"></a></p>')
             .append('<p><a href="/project/' + repository + '" class="btn btn-default"><i class="fa fa-search">View the details</a></p>')
             .show();
     });
