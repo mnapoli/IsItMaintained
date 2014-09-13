@@ -6,12 +6,12 @@ Monitoring open source projects activity.
 
 ## Metrics
 
-Done:
-
-- Issue average & median closing time (collaborators issues excluded)
+- Issue median closing time (collaborators issues excluded)
+- Percentage of open issues (collaborators issues excluded)
 
 Ideas:
 
+- Last commit date (from all branches)
 - Take into account pull requests? (are they already? need to check GitHub's API)
 - Issue average/median acknowledgement time (i.e. first comment after the issue was open)
 - Regularity of releases (i.e. average release delay)
