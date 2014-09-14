@@ -48,7 +48,11 @@ class BadgeController
                     break;
             }
         } catch (RuntimeException $e) {
-            $badge = $this->poser->generate('github-api', 'limit', self::COLOR_DANGER, 'svg');
+            if ($e->getMessage() === 'Not Found') {
+                $badge = $this->poser->generate('github', 'not-found', self::COLOR_DANGER, 'svg');
+            } else {
+                $badge = $this->poser->generate('github-api', 'limit', self::COLOR_DANGER, 'svg');
+            }
         }
 
         header('Content-type: image/svg+xml');
