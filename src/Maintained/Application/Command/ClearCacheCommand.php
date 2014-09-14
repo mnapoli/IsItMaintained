@@ -3,6 +3,7 @@
 namespace Maintained\Application\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -26,16 +27,29 @@ class ClearCacheCommand extends Command
     protected function configure()
     {
         $this->setName('cache:clear')
-            ->setDescription('Clears the caches');
+            ->setDescription('Clears the caches')
+            ->addArgument(
+                'name',
+                InputArgument::OPTIONAL,
+                'Which cache to clear (app, github, all). By default: "all"',
+                'all'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $fs = new Filesystem();
 
-        $fs->remove($this->cacheDirectory . '/app');
-        $fs->remove($this->cacheDirectory . '/github');
+        $cache = $input->getArgument('name');
 
-        $output->writeln('Caches cleared');
+        if ($cache === 'github' || $cache === 'all') {
+            $fs->remove($this->cacheDirectory . '/github');
+            $output->writeln('<info>GitHub cache cleared</info>');
+        }
+
+        if ($cache === 'app' || $cache === 'all') {
+            $fs->remove($this->cacheDirectory . '/app');
+            $output->writeln('<info>Application cache cleared</info>');
+        }
     }
 }
