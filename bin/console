@@ -3,6 +3,7 @@
 
 use DI\Container;
 use Maintained\Application\Command\ClearCacheCommand;
+use Maintained\Application\Command\ShowStatisticsCommand;
 use Symfony\Component\Console\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -13,5 +14,6 @@ $container = require __DIR__ . '/../app/container.php';
 $application = new Application('Maintained');
 
 $application->add($container->get(ClearCacheCommand::class));
+$application->add($container->get(ShowStatisticsCommand::class));
 
 $application->run();

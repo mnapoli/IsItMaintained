@@ -9,6 +9,7 @@ use Github\Client;
 use Github\HttpClient\CachedHttpClient;
 use Interop\Container\ContainerInterface;
 use Maintained\Application\Command\ClearCacheCommand;
+use Maintained\Application\Command\ShowStatisticsCommand;
 use Maintained\Application\Twig\TwigExtension;
 use Maintained\Statistics\CachedStatisticsProvider;
 use Maintained\Statistics\StatisticsComputer;
@@ -85,4 +86,6 @@ return [
     ClearCacheCommand::class => object()
         ->lazy()
         ->constructorParameter('cacheDirectory', link('cache.directory')),
+    ShowStatisticsCommand::class => object()
+        ->lazy(),
 ];

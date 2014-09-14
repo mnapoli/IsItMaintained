@@ -29,6 +29,7 @@ API token (https://github.com/settings/applications) and set it in `parameters.p
 
 ## Commands
 
+- `bin/console stats:show user/repository`: shows the statistics for a repository (skips the cache)
 - `bin/console cache:clear`: clears all the caches
 
 ## Requirements

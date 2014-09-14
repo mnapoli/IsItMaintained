@@ -143,10 +143,8 @@ class StatisticsComputer implements StatisticsProvider
         $repositoryApi = $this->github->api('repo');
         $collaborators = $repositoryApi->collaborators()->all($user, $repository);
 
-        $collaborators = array_map(function ($user) {
+        return array_map(function ($user) {
             return $user['login'];
         }, $collaborators);
-
-        return $collaborators;
     }
 }

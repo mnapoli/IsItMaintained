@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "75483c88919111d2e43df9e7b3ca8299",
+    "hash": "c7dd4c114e60b8f34e32ef5dd1751235",
     "packages": [
         {
             "name": "aura/router",
@@ -501,6 +501,41 @@
                 "github"
             ],
             "time": "2014-08-21 20:10:02"
+        },
+        {
+            "name": "mnapoli/number-two",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mnapoli/NumberTwo.git",
+                "reference": "d3a3c71ca345a1d28eebd9b3508a54f85794c402"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mnapoli/NumberTwo/zipball/d3a3c71ca345a1d28eebd9b3508a54f85794c402",
+                "reference": "d3a3c71ca345a1d28eebd9b3508a54f85794c402",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "NumberTwo": "src/",
+                    "UnitTest": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "NumberTwo is a classy variable dumper",
+            "homepage": "https://github.com/mnapoli/NumberTwo",
+            "keywords": [
+                "debug",
+                "dump",
+                "var_dump",
+                "variable"
+            ],
+            "time": "2013-07-25 07:47:15"
         },
         {
             "name": "mnapoli/php-di",
@@ -1403,16 +1438,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.2.5",
+            "version": "4.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7"
+                "reference": "c28a790620fe30b049bb693be1ef9cd4e0fe906c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7",
-                "reference": "c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c28a790620fe30b049bb693be1ef9cd4e0fe906c",
+                "reference": "c28a790620fe30b049bb693be1ef9cd4e0fe906c",
                 "shasum": ""
             },
             "require": {
@@ -1473,7 +1508,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-09-06 18:38:27"
+            "time": "2014-09-14 09:31:24"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
