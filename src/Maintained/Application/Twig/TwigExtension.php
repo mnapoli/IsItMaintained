@@ -57,9 +57,10 @@ class TwigExtension extends Twig_Extension
     {
         $url = $this->badgeUrl($repository, $type);
         $projectUrl = $this->projectUrl($repository);
+        $description = $this->getBadgeDescription($type);
 
         return <<<HTML
-<a href="$projectUrl"><img src="$url"></a>
+<a href="$projectUrl" title="$description"><img src="$url" alt="$description"></a>
 HTML;
     }
 
@@ -69,7 +70,7 @@ HTML;
         $projectUrl = $this->projectUrl($repository, true);
         $description = $this->getBadgeDescription($type);
 
-        return "[![$description]($badgeUrl)]($projectUrl)";
+        return "[![$description]($badgeUrl)]($projectUrl \"$description\")";
     }
 
     public function getBaseUrl()
