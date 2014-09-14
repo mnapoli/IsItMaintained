@@ -40,9 +40,8 @@ return [
     }),
 
     // Badge generator
-    Poser::class => factory(function () {
-        return new Poser([new SvgRender()]);
-    }),
+    Poser::class => object()
+        ->constructor(link(SvgRender::class)),
 
     // Twig
     Twig_Environment::class => factory(function (ContainerInterface $c) {
