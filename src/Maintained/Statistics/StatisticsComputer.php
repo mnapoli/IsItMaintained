@@ -88,7 +88,8 @@ class StatisticsComputer implements StatisticsProvider
      * @param float[] $array
      * @return float
      */
-    private function median(array $array) {
+    private function median(array $array)
+    {
         $count = count($array);
 
         if ($count == 0) {
