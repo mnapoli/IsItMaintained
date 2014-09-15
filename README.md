@@ -11,12 +11,12 @@ Monitoring open source projects activity.
 
 Ideas:
 
-- Last commit date (from all branches)
 - Issue average/median acknowledgement time (i.e. first comment after the issue was open)
 
 Dropped ideas:
 
-- Release frequency: depends a lot on the project, hard to say a frequency is "good" or "bad"
+- Release frequency: depends a lot on the project, hard to say a frequency is "good" or "bad" ([#2](https://github.com/mnapoli/Maintained/issues/2))
+- Last commit date (from all branches): same as [#2](https://github.com/mnapoli/Maintained/issues/2)
 
 ## Run
 
