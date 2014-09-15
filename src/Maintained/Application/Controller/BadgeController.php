@@ -75,7 +75,7 @@ class BadgeController
             $color = self::COLOR_DANGER;
         }
 
-        return $this->poser->generate('resolution', $statistics->resolutionTime->formatShort(), $color, 'svg');
+        return $this->poser->generate('issue resolution', $statistics->resolutionTime->formatShort(), $color, 'svg');
     }
 
     /**
