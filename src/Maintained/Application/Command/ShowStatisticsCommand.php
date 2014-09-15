@@ -42,7 +42,7 @@ class ShowStatisticsCommand extends Command
 
         $statistics = $this->statisticsProvider->getStatistics($user, $repository);
 
-        $output->writeln(sprintf('<info>Median resolution time: %s</info>', $statistics->resolutionTime->formatLong()));
-        $output->writeln(sprintf('<info>Open issues: %s%%</info>', intval($statistics->openIssuesRatio * 100)));
+        $output->writeln(sprintf('Median resolution time: <info>%s</info>', $statistics->resolutionTime->formatLong()));
+        $output->writeln(sprintf('Open issues: <info>%s%%</info>', intval($statistics->openIssuesRatio * 100)));
     }
 }

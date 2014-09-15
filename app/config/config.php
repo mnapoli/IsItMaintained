@@ -95,7 +95,7 @@ return [
 
     ClearCacheCommand::class => object()
         ->lazy()
-        ->constructorParameter('cacheDirectory', link('cache.directory')),
+        ->constructorParameter('cacheDirectory', link('directory.cache')),
     ShowStatisticsCommand::class => object()
         ->lazy(),
 ];
