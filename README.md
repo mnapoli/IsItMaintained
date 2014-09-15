@@ -1,4 +1,4 @@
-# Maintained
+# Is It Maintained?
 
 Monitoring open source projects activity.
 
