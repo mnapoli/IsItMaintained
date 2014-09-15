@@ -13,7 +13,10 @@ Ideas:
 
 - Last commit date (from all branches)
 - Issue average/median acknowledgement time (i.e. first comment after the issue was open)
-- Regularity of releases (i.e. average release delay)
+
+Dropped ideas:
+
+- Release frequency: depends a lot on the project, hard to say a frequency is "good" or "bad"
 
 ## Run
 
