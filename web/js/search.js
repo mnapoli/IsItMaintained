@@ -1,4 +1,4 @@
-$(function () {
+jQuery(function ($) {
     $('#search').submit(function (e) {
         e.preventDefault();
 
@@ -14,10 +14,14 @@ $(function () {
             return;
         }
 
+        var loadingDiv = $('<div><i class="fa fa-spinner fa-spin"></i> computing, please wait</div>');
+
         resultDiv.append('<h4>' + repository + '</h4>')
-            .append('<p><a href="/project/' + repository + '"><img src="/badge/resolution/' + repository + '.svg"></a></p>')
-            .append('<p><a href="/project/' + repository + '"><img src="/badge/open/' + repository + '.svg"></a></p>')
-            .append('<p><a href="/project/' + repository + '" class="btn btn-default"><i class="fa fa-search">View the details</a></p>')
+            .append(loadingDiv)
             .show();
+
+        $.get('/check/' + repository, function (html) {
+            loadingDiv.html(html);
+        });
     });
 });
