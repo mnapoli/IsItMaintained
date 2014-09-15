@@ -14,6 +14,9 @@ use Maintained\Application\Twig\TwigExtension;
 use Maintained\Statistics\CachedStatisticsProvider;
 use Maintained\Statistics\StatisticsComputer;
 use Maintained\Statistics\StatisticsProvider;
+use Maintained\Statistics\StatisticsProviderLogger;
+use Maintained\Storage\JsonFileStorage;
+use Maintained\Storage\Storage;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgRender;
 use function DI\factory;
@@ -24,6 +27,9 @@ return [
     ContainerInterface::class => link(Container::class),
 
     'baseUrl' => 'http://isitmaintained.com',
+
+    'directory.cache' => __DIR__ . '/../../app/cache',
+    'directory.data' => __DIR__ . '/../../app/data',
 
     // Routing
     'routes' => require __DIR__ . '/routes.php',
@@ -55,9 +61,8 @@ return [
     }),
 
     // Cache
-    'cache.directory' => __DIR__ . '/../../app/cache',
     Cache::class => factory(function (ContainerInterface $c) {
-        $cache = new FilesystemCache($c->get('cache.directory') . '/app');
+        $cache = new FilesystemCache($c->get('directory.cache') . '/app');
         $cache->setNamespace('Maintained');
 
         return $cache;
@@ -66,7 +71,7 @@ return [
     // GitHub API
     'github.auth_token' => null,
     Client::class => factory(function (ContainerInterface $c) {
-        $cacheDirectory = $c->get('cache.directory') . '/github';
+        $cacheDirectory = $c->get('directory.cache') . '/github';
 
         $client = new Client(
             new CachedHttpClient(['cache_dir' => $cacheDirectory])
@@ -80,7 +85,12 @@ return [
         return $client;
     }),
 
+    Storage::class => object(JsonFileStorage::class)
+        ->constructorParameter('directory', link('directory.data')),
+
     StatisticsProvider::class => object(CachedStatisticsProvider::class)
+        ->constructorParameter('wrapped', link(StatisticsProviderLogger::class)),
+    StatisticsProviderLogger::class => object()
         ->constructorParameter('wrapped', link(StatisticsComputer::class)),
 
     ClearCacheCommand::class => object()

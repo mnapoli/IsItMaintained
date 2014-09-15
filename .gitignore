@@ -1,5 +1,7 @@
 /app/cache/*
 !/app/cache/.gitkeep
+/app/data/*
+!/app/data/.gitkeep
 /app/config/parameters.php
 /vendor/
 /web/vendor/
