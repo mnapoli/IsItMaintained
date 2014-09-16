@@ -24,7 +24,7 @@ return [
         'controller' => BadgeController::class,
     ],
     '404'    => [
-        'pattern'    => '/{any}',
+        'pattern'    => '/404',
         'controller' => Error404Controller::class,
     ],
 ];

@@ -13,6 +13,10 @@ $router = $container->get(Router::class);
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $route = $router->match($url, $_SERVER);
+if (! $route) {
+    header('HTTP/1.0 404 Not Found');
+    return false;
+}
 $requestParameters = $route->params;
 $controller = $requestParameters['controller'];
 
