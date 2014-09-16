@@ -4,4 +4,9 @@
 
 return [
     'github.auth_token' => null,
+
+    // If you want to enable Piwik tracking:
+    'piwik.enabled' => true,
+    'piwik.host' => 'some-host.com',
+    'piwik.site_id' => 123,
 ];

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c7dd4c114e60b8f34e32ef5dd1751235",
+    "hash": "88fa6746151b66f10672563d6fe4f682",
     "packages": [
         {
             "name": "aura/router",
@@ -503,41 +503,6 @@
             "time": "2014-08-21 20:10:02"
         },
         {
-            "name": "mnapoli/number-two",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mnapoli/NumberTwo.git",
-                "reference": "d3a3c71ca345a1d28eebd9b3508a54f85794c402"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mnapoli/NumberTwo/zipball/d3a3c71ca345a1d28eebd9b3508a54f85794c402",
-                "reference": "d3a3c71ca345a1d28eebd9b3508a54f85794c402",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "NumberTwo": "src/",
-                    "UnitTest": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "NumberTwo is a classy variable dumper",
-            "homepage": "https://github.com/mnapoli/NumberTwo",
-            "keywords": [
-                "debug",
-                "dump",
-                "var_dump",
-                "variable"
-            ],
-            "time": "2013-07-25 07:47:15"
-        },
-        {
             "name": "mnapoli/php-di",
             "version": "4.4.x-dev",
             "source": {
@@ -621,6 +586,39 @@
                 "reflection"
             ],
             "time": "2014-08-21 08:20:45"
+        },
+        {
+            "name": "mnapoli/piwik-twig-extension",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mnapoli/PiwikTwigExtension.git",
+                "reference": "5171ab7221830a9d377add03dd60dbe6bd7b331f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mnapoli/PiwikTwigExtension/zipball/5171ab7221830a9d377add03dd60dbe6bd7b331f",
+                "reference": "5171ab7221830a9d377add03dd60dbe6bd7b331f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "twig/twig": "~1.10"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PiwikTwigExtension\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2014-09-16 06:51:19"
         },
         {
             "name": "myclabs/php-enum",
@@ -1885,7 +1883,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "mnapoli/php-di": 20,
-        "badges/poser": 20
+        "badges/poser": 20,
+        "mnapoli/piwik-twig-extension": 20
     },
     "prefer-stable": true,
     "platform": {

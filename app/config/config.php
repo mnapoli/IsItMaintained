@@ -17,6 +17,7 @@ use Maintained\Statistics\StatisticsProvider;
 use Maintained\Statistics\StatisticsProviderLogger;
 use Maintained\Storage\JsonFileStorage;
 use Maintained\Storage\Storage;
+use PiwikTwigExtension\PiwikTwigExtension;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgRender;
 use function DI\factory;
@@ -56,9 +57,17 @@ return [
         $twig = new Twig_Environment($loader);
 
         $twig->addExtension($c->get(TwigExtension::class));
+        $twig->addExtension($c->get(PiwikTwigExtension::class));
 
         return $twig;
     }),
+    PiwikTwigExtension::class => object()
+        ->constructor(link('piwik.host'), link('piwik.site_id'), link('piwik.enabled')),
+
+    // Piwik tracking
+    'piwik.enabled' => false,
+    'piwik.host' => null,
+    'piwik.site_id' => null,
 
     // Cache
     Cache::class => factory(function (ContainerInterface $c) {

@@ -23,7 +23,7 @@
         "doctrine/cache": "~1.0",
         "symfony/console": "~2.5",
         "symfony/filesystem": "~2.1",
-        "mnapoli/number-two": "~1.0"
+        "mnapoli/piwik-twig-extension": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"
