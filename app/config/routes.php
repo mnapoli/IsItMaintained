@@ -1,6 +1,7 @@
 <?php
 
 use Maintained\Application\Controller\BadgeController;
+use Maintained\Application\Controller\Error404Controller;
 use Maintained\Application\Controller\HomeController;
 use Maintained\Application\Controller\ProjectCheckController;
 use Maintained\Application\Controller\ProjectController;
@@ -21,5 +22,9 @@ return [
     'badge'   => [
         'pattern'    => '/badge/{badge}/{user}/{repository}.svg',
         'controller' => BadgeController::class,
+    ],
+    '404'    => [
+        'pattern'    => '/{any}',
+        'controller' => Error404Controller::class,
     ],
 ];

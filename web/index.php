@@ -13,9 +13,6 @@ $router = $container->get(Router::class);
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $route = $router->match($url, $_SERVER);
-if (! $route) {
-    return false;
-}
 $requestParameters = $route->params;
 $controller = $requestParameters['controller'];
 
