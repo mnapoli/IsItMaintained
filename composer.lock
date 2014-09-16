@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "88fa6746151b66f10672563d6fe4f682",
+    "hash": "b645ab7db751545e1cc6e17e25a96b3e",
     "packages": [
         {
             "name": "aura/router",
@@ -589,7 +589,7 @@
         },
         {
             "name": "mnapoli/piwik-twig-extension",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mnapoli/PiwikTwigExtension.git",
@@ -1883,8 +1883,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "mnapoli/php-di": 20,
-        "badges/poser": 20,
-        "mnapoli/piwik-twig-extension": 20
+        "badges/poser": 20
     },
     "prefer-stable": true,
     "platform": {
