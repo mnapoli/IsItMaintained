@@ -2,6 +2,7 @@
 
 use Aura\Router\Router;
 use DI\Container;
+use Maintained\Application\Controller\Error404Controller;
 use Maintained\Application\Controller\MaintenanceController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -18,12 +19,17 @@ if ($container->get('maintenance')) {
 
     $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $route = $router->match($url, $_SERVER);
-    if (! $route) {
-        header('HTTP/1.0 404 Not Found');
-        return false;
+    if ($route) {
+        $requestParameters = $route->params;
+        $controller = $requestParameters['controller'];
+    } else {
+        if (php_sapi_name() === 'cli-server') {
+            return false;
+        }
+
+        $controller = Error404Controller::class;
+        $requestParameters = [];
     }
-    $requestParameters = $route->params;
-    $controller = $requestParameters['controller'];
 }
 
 // Handle the case where the controller is an invokable class
