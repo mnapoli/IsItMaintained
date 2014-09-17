@@ -14,6 +14,7 @@ use function DI\object;
 
 return [
     'baseUrl' => 'http://isitmaintained.com',
+    'maintenance' => false,
 
     'directory.cache' => __DIR__ . '/../../app/cache',
     'directory.data' => __DIR__ . '/../../app/data',
