@@ -29,17 +29,32 @@ return [
     // GitHub API
     'github.auth_token' => null,
 
-    Storage::class => object(JsonFileStorage::class)
-        ->constructorParameter('directory', link('directory.data')),
+    'issues.label_exclusions' => [
+        '.*enhancement.*',
+        '.*feature.*',
+        '.*task.*',
+        '.*refactoring.*',
+        '.*duplicate.*',
+        '(.*[\s\.-])?wip',
+        '(.*[\s\.-])?rfc',
+        '(.*[\s\.-])?poc',
+        '(.*[\s\.-])?dx',
+    ],
 
     StatisticsProvider::class => object(CachedStatisticsProvider::class)
         ->constructorParameter('wrapped', link(StatisticsProviderLogger::class)),
     StatisticsProviderLogger::class => object()
         ->constructorParameter('wrapped', link(StatisticsComputer::class)),
+    StatisticsComputer::class => object()
+        ->constructorParameter('excludedLabels', link('issues.label_exclusions')),
 
+    // CLI commands
     ClearCacheCommand::class => object()
         ->lazy()
         ->constructorParameter('cacheDirectory', link('directory.cache')),
     ShowStatisticsCommand::class => object()
         ->lazy(),
+
+    Storage::class => object(JsonFileStorage::class)
+        ->constructorParameter('directory', link('directory.data')),
 ];

@@ -6,12 +6,17 @@ Monitoring open source projects activity.
 
 ## Metrics
 
-- Issue median closing time (collaborators issues excluded)
-- Percentage of open issues (collaborators issues excluded)
+- Issue median closing time
+- Percentage of open issues
+
+Not all issues are taken into account:
+
+- Issues from collaborators are ignored
+- Issues with labels like "feature", "enhancement", "duplicate"… are ignored
 
 Ideas:
 
-- Issue average/median acknowledgement time (i.e. first comment after the issue was open)
+- Reactivity: issue average acknowledgement time (i.e. first comment after the issue was open)
 
 Dropped ideas:
 

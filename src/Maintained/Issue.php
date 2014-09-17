@@ -35,6 +35,11 @@ class Issue
      */
     private $openedFor;
 
+    /**
+     * @var string[]
+     */
+    private $labels = [];
+
     private function __construct($id)
     {
         $this->id = (int) $id;
@@ -59,6 +64,12 @@ class Issue
         }
 
         $issue->openedFor = TimeInterval::from($endDate, $openingDate);
+
+        $labels = [];
+        foreach ($data['labels'] as $dataLabel) {
+            $labels[] = $dataLabel['name'];
+        }
+        $issue->labels = $labels;
 
         return $issue;
     }
@@ -85,5 +96,13 @@ class Issue
     public function isOpen()
     {
         return $this->open;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getLabels()
+    {
+        return $this->labels;
     }
 }

@@ -19,9 +19,15 @@ class StatisticsComputer implements StatisticsProvider
      */
     private $github;
 
-    public function __construct(Client $github)
+    /**
+     * @var string[]
+     */
+    private $excludedLabels;
+
+    public function __construct(Client $github, array $excludedLabels)
     {
         $this->github = $github;
+        $this->excludedLabels = $excludedLabels;
     }
 
     public function getStatistics($user, $repository)
@@ -30,6 +36,7 @@ class StatisticsComputer implements StatisticsProvider
         $collaborators = $this->fetchCollaborators($user, $repository);
 
         $issues = $this->excludeIssuesCreatedByCollaborators($issues, $collaborators);
+        $issues = $this->excludeIssuesByLabels($issues, $this->excludedLabels);
 
         $statistics = new Statistics();
         $statistics->resolutionTime = $this->computeResolutionTime($issues);
@@ -81,6 +88,29 @@ class StatisticsComputer implements StatisticsProvider
     {
         return array_filter($issues, function (Issue $issue) use ($collaborators) {
             return !in_array($issue->getAuthor(), $collaborators);
+        });
+    }
+
+    /**
+     * @param Issue[]  $issues
+     * @param string[] $labels
+     * @return Issue[]
+     */
+    private function excludeIssuesByLabels(array $issues, array $labels)
+    {
+        $regex = '/^(' . implode(')|(', $labels) . ')$/i';
+
+        return array_filter($issues, function (Issue $issue) use ($labels, $regex) {
+            foreach ($issue->getLabels() as $label) {
+                $match = preg_match($regex, $label);
+
+                if ($match === false) {
+                    throw new \RuntimeException('Error while using the following regex: ' . $regex);
+                } elseif ($match === 1) {
+                    return false;
+                }
+            }
+            return true;
         });
     }
 
