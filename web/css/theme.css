@@ -132,22 +132,20 @@ header .intro-text .skills {
 
 @media(min-width:768px) {
     body {
-        padding-top: 100px;
     }
     header .container {
-        padding-bottom: 100px;
+        padding-top: 80px;
+        padding-bottom: 80px;
     }
 
     header .intro-text .name {
-        font-size: 4.75em;
+        font-size: 4.0em;
     }
 
     header .intro-text .skills {
         font-size: 1.75em;
     }
-}
 
-@media(min-width:768px) {
     .navbar-fixed-top {
         padding: 25px 0;
         -webkit-transition: padding .3s;
@@ -156,10 +154,7 @@ header .intro-text .skills {
     }
 
     .navbar-fixed-top .navbar-brand {
-        font-size: 2em;
-        -webkit-transition: all .3s;
-        -moz-transition: all .3s;
-        transition: all .3s;
+        font-size: 1.5em;
     }
 
     .navbar-fixed-top.navbar-shrink {
@@ -168,6 +163,16 @@ header .intro-text .skills {
 
     .navbar-fixed-top.navbar-shrink .navbar-brand {
         font-size: 1.5em;
+    }
+}
+
+@media (min-width: 992px) {
+    header .intro-text .name {
+        font-size: 4.75em;
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        font-size: 2em;
     }
 }
 

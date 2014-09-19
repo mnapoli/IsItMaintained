@@ -7,7 +7,12 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2><a href="https://github.com/{{ repository }}">{{ repository }}</a></h2>
+                    <h2>
+                        <a href="https://github.com/{{ repository }}" title="GitHub project">
+                            <i class="fa fa-github"></i>
+                            {{ repository }}
+                        </a>
+                    </h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -15,53 +20,65 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
 
-                    <p>
-                        Resolution time:
-                        <strong class="text-primary">{{ resolutionTime.formatLong() }}</strong>
-                    </p>
-                    <p>
-                        {{ badgeHtml(repository, 'resolution') }}
-                    </p>
-                    <p class="small">
-                        The resolution time is the median time an issue or pull request stays open.
-                    </p>
-                    <p class="small">
-                        Issues or PR opened by the collaborators are ignored.
-                    </p>
-                    <p class="input-group input-group-sm">
-                        <span class="input-group-addon">Image:</span>
-                        <input type="text" value="{{ badgeUrl(repository, 'resolution', true) }}"
-                               class="form-control select-all">
-                    </p>
-                    <p class="input-group input-group-sm">
-                        <span class="input-group-addon">Markdown:</span>
-                        <input type="text" value="{{ badgeMarkdown(repository, 'resolution') }}"
-                               class="form-control select-all">
-                    </p>
+                    <div class="well">
 
-                    <p>
-                        Open issues:
-                        <strong class="text-primary">{{ openedIssues }}%</strong>
-                    </p>
-                    <p>
-                        {{ badgeHtml(repository, 'open') }}
-                    </p>
-                    <p class="small">
-                        The percentage of open issues and pull requests.
-                    </p>
-                    <p class="small">
-                        Issues or PR opened by the collaborators are ignored.
-                    </p>
-                    <p class="input-group input-group-sm">
-                        <span class="input-group-addon">Image:</span>
-                        <input type="text" value="{{ badgeUrl(repository, 'open', true) }}"
-                               class="form-control select-all">
-                    </p>
-                    <p class="input-group input-group-sm">
-                        <span class="input-group-addon">Markdown:</span>
-                        <input type="text" value="{{ badgeMarkdown(repository, 'open') }}"
-                               class="form-control select-all">
-                    </p>
+                        <p>
+                            Resolution time:
+                            <strong class="text-primary">{{ resolutionTime.formatLong() }}</strong>
+                        </p>
+                        <p>
+                            {{ badgeHtml(repository, 'resolution') }}
+                        </p>
+                        <p class="small">
+                            The resolution time is the median time an issue or pull request stays open.
+                        </p>
+                        <p class="small">
+                            Issues or pull requests opened by the collaborators are ignored.
+                            Some issues are also ignored based on their labels (example of ignored
+                            labels: "enhancement", "feature"…).
+                        </p>
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">Image:</span>
+                            <input type="text" value="{{ badgeUrl(repository, 'resolution', true) }}"
+                                   class="form-control select-all">
+                        </p>
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">Markdown:</span>
+                            <input type="text" value="{{ badgeMarkdown(repository, 'resolution') }}"
+                                   class="form-control select-all">
+                        </p>
+
+                    </div>
+
+                    <div class="well">
+
+                        <p>
+                            Open issues:
+                            <strong class="text-primary">{{ openedIssues }}%</strong>
+                        </p>
+                        <p>
+                            {{ badgeHtml(repository, 'open') }}
+                        </p>
+                        <p class="small">
+                            The percentage of open issues and pull requests.
+                        </p>
+                        <p class="small">
+                            Issues or pull requests opened by the collaborators are ignored.
+                            Some issues are also ignored based on their labels (example of ignored
+                            labels: "enhancement", "feature"…).
+                        </p>
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">Image:</span>
+                            <input type="text" value="{{ badgeUrl(repository, 'open', true) }}"
+                                   class="form-control select-all">
+                        </p>
+                        <p class="input-group input-group-sm">
+                            <span class="input-group-addon">Markdown:</span>
+                            <input type="text" value="{{ badgeMarkdown(repository, 'open') }}"
+                                   class="form-control select-all">
+                        </p>
+
+                    </div>
 
                 </div>
             </div>
