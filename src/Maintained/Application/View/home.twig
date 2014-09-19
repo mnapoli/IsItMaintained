@@ -94,11 +94,16 @@
             </div>
 
             <div class="row portfolio">
-                {% for repository, name in projects %}
+
+                <div class="col-lg-12 text-center">
+                    <h3>Projects recently analyzed</h3>
+                </div>
+
+                {% for repository in projects %}
                     <div class="col-sm-4 portfolio-item">
                         <p>
                             <a href="{{ projectUrl(repository) }}">
-                                {{ name }}
+                                {{ repository }}
                             </a>
                         </p>
                         <p>

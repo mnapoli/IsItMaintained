@@ -2,6 +2,7 @@
 
 namespace Maintained\Application\Controller;
 
+use Maintained\Storage\Storage;
 use Twig_Environment;
 
 /**
@@ -9,25 +10,12 @@ use Twig_Environment;
  */
 class HomeController
 {
-    public function __invoke(Twig_Environment $twig)
+    public function __invoke(Twig_Environment $twig, Storage $storage)
     {
-        $demoProjects = [
-            'symfony/symfony'        => 'Symfony 2',
-            'zendframework/zf2'      => 'Zend Framework 2',
-            'zendframework/zf1'      => 'Zend Framework 1',
-            'codeguy/Slim'           => 'Slim',
-            'silexphp/Silex'         => 'Silex',
-            'piwik/piwik'            => 'Piwik',
-            'auraphp/Aura.Sql'       => 'Aura.Sql',
-            'Behat/Behat'            => 'Behat',
-            'schmittjoh/serializer'  => 'Serializer',
-            'kriswallsmith/assetic'  => 'Assetic',
-            'thephpleague/flysystem' => 'Flysystem',
-            'guzzle/guzzle'          => 'Guzzle',
-        ];
+        $repositories = array_reverse($storage->retrieve('repositories'));
 
         echo $twig->render('home.twig', [
-            'projects' => $demoProjects,
+            'projects' => array_slice($repositories, 0, 9),
         ]);
     }
 }
