@@ -12,10 +12,24 @@ class HomeController
 {
     public function __invoke(Twig_Environment $twig, Storage $storage)
     {
-        $repositories = array_reverse($storage->retrieve('repositories'));
+        $latestRepositories = array_reverse($storage->retrieve('repositories'));
+        $latestRepositories = array_slice($latestRepositories, 0, 9);
+
+        $showcase = [
+            'symfony/symfony'           => 'Symfony 2',
+            'zendframework/zf2'         => 'Zend Framework 2',
+            'zendframework/zf1'         => 'Zend Framework 1',
+            'codeguy/Slim'              => 'Slim',
+            'silexphp/Silex'            => 'Silex',
+            'cakephp/cakephp'           => 'CakePHP',
+            'sebastianbergmann/phpunit' => 'PHPUnit',
+            'piwik/piwik'               => 'Piwik',
+            'guzzle/guzzle'             => 'Guzzle',
+        ];
 
         echo $twig->render('home.twig', [
-            'projects' => array_slice($repositories, 0, 9),
+            'latestRepositories' => $latestRepositories,
+            'showcase' => $showcase,
         ]);
     }
 }

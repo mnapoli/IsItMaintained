@@ -99,11 +99,40 @@
                     <h3>Projects recently analyzed</h3>
                 </div>
 
-                {% for repository in projects %}
+                {% for repository in latestRepositories %}
                     <div class="col-sm-4 portfolio-item">
                         <p>
                             <a href="{{ projectUrl(repository) }}">
                                 {{ repository }}
+                            </a>
+                        </p>
+                        <p>
+                            {{ badgeHtml(repository, 'resolution') }}
+                        </p>
+                        <p>
+                            {{ badgeHtml(repository, 'open') }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row portfolio">
+
+                <div class="col-lg-12 text-center">
+                    <h3>Most popular projects</h3>
+                </div>
+
+                {% for repository, name in showcase %}
+                    <div class="col-sm-4 portfolio-item">
+                        <p>
+                            <a href="{{ projectUrl(repository) }}">
+                                {{ name }}
                             </a>
                         </p>
                         <p>
