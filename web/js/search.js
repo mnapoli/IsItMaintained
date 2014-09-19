@@ -9,6 +9,11 @@ jQuery(function ($) {
 
         var repository = $(this).find('#search-input').val();
 
+        if (repository.indexOf('https://github.com/') !== -1) {
+            repository = repository.slice('https://github.com/'.length);
+            console.log(repository);
+        }
+
         if (repository.length === 0 || repository.indexOf('/') === -1) {
             $(this).find('.alert-warning').show();
             return;
