@@ -38,8 +38,10 @@ class StatisticsComputer implements StatisticsProvider
         $issues = $this->excludeIssuesCreatedByCollaborators($issues, $collaborators);
         $issues = $this->excludeIssuesByLabels($issues, $this->excludedLabels);
 
+        $latestIssues = $this->keepLatestIssues($issues);
+
         $statistics = new Statistics();
-        $statistics->resolutionTime = $this->computeResolutionTime($issues);
+        $statistics->resolutionTime = $this->computeResolutionTime($latestIssues);
         $statistics->openIssuesRatio = $this->computeOpenIssueRatio($issues);
 
         return $statistics;
@@ -111,6 +113,22 @@ class StatisticsComputer implements StatisticsProvider
                 }
             }
             return true;
+        });
+    }
+
+    /**
+     * @param Issue[]  $issues
+     * @return Issue[]
+     */
+    private function keepLatestIssues(array $issues)
+    {
+        $sixMonthsAgo = new \DateTime('-6 month');
+
+        return array_filter($issues, function (Issue $issue) use ($sixMonthsAgo) {
+            if ($issue->isOpen()) {
+                return true;
+            }
+            return $issue->getOpenedAt() > $sixMonthsAgo;
         });
     }
 

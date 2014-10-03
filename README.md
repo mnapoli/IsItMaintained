@@ -13,6 +13,7 @@ Not all issues are taken into account:
 
 - Issues from collaborators are ignored
 - Issues with labels like "feature", "enhancement", "duplicate"… are ignored
+- For the issue median closing time, issues closed and older than 6 months are ignored
 
 Ideas:
 

@@ -29,6 +29,13 @@ class Issue
     private $open;
 
     /**
+     * Date the issue has been opened.
+     *
+     * @var DateTime
+     */
+    private $openedAt;
+
+    /**
      * Duration the issue has been opened for.
      *
      * @var TimeInterval
@@ -56,14 +63,14 @@ class Issue
         $issue->author = $data['user']['login'];
         $issue->open = ($data['state'] === self::STATE_OPEN);
 
-        $openingDate = new DateTime($data['created_at']);
+        $issue->openedAt = new DateTime($data['created_at']);
         if (! $issue->open) {
             $endDate = new DateTime($data['closed_at']);
         } else {
             $endDate = new DateTime();
         }
 
-        $issue->openedFor = TimeInterval::from($endDate, $openingDate);
+        $issue->openedFor = TimeInterval::from($endDate, $issue->openedAt);
 
         $labels = [];
         foreach ($data['labels'] as $dataLabel) {
@@ -80,6 +87,14 @@ class Issue
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getOpenedAt()
+    {
+        return $this->openedAt;
     }
 
     /**
