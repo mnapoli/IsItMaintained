@@ -2,8 +2,9 @@
 
 namespace Maintained\Application\Command;
 
+use BlackBox\MapStorage;
+use Maintained\Repository;
 use Maintained\Statistics\StatisticsProvider;
-use Maintained\Storage\Storage;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,18 +17,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 class WarmupCacheCommand extends Command
 {
     /**
-     * @var Storage
+     * @var MapStorage
      */
-    private $storage;
+    private $repositories;
 
     /**
      * @var StatisticsProvider
      */
     private $statisticsProvider;
 
-    public function __construct(Storage $storage, StatisticsProvider $statisticsProvider)
+    public function __construct(MapStorage $repositoryStorage, StatisticsProvider $statisticsProvider)
     {
-        $this->storage = $storage;
+        $this->repositories = $repositoryStorage;
         $this->statisticsProvider = $statisticsProvider;
 
         parent::__construct();
@@ -41,15 +42,19 @@ class WarmupCacheCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $repositories = $this->storage->retrieve('repositories');
+        $repositories = $this->repositories->getData();
         $repositories = is_array($repositories) ? $repositories : [];
 
-        foreach ($repositories as $repository) {
-            $output->writeln(sprintf('Caching statistics for <info>%s</info>', $repository));
+        foreach ($repositories as $id => $repository) {
+            /** @var Repository $repository */
+            $repository = $this->repositories->get($id);
+            $slug = $repository->getName();
 
-            list($user, $repository) = explode('/', $repository, 2);
+            $output->writeln(sprintf('Caching statistics for <info>%s</info>', $slug));
 
-            $this->statisticsProvider->getStatistics($user, $repository);
+            list($user, $repo) = explode('/', $slug, 2);
+
+            $this->statisticsProvider->getStatistics($user, $repo);
         }
     }
 }

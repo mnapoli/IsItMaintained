@@ -2,6 +2,10 @@
 
 use Aura\Router\Router;
 use Aura\Router\RouterFactory;
+use BlackBox\Adapter\FileStorage;
+use BlackBox\Transformer\ArrayMapAdapter;
+use BlackBox\Transformer\JsonEncoder;
+use BlackBox\Transformer\ObjectArrayMapper;
 use DI\Container;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
@@ -9,6 +13,7 @@ use Github\Client;
 use Github\HttpClient\CachedHttpClient;
 use Interop\Container\ContainerInterface;
 use Maintained\Application\Twig\TwigExtension;
+use Maintained\Repository;
 use PiwikTwigExtension\PiwikTwigExtension;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgRender;
@@ -57,6 +62,17 @@ return [
         $cache->setNamespace('Maintained');
 
         return $cache;
+    }),
+
+    'storage.repositories' => factory(function (ContainerInterface $c) {
+        return new ObjectArrayMapper(
+            new ArrayMapAdapter(
+                new JsonEncoder(
+                    new FileStorage($c->get('directory.data') . '/repositories.json')
+                )
+            ),
+            Repository::class
+        );
     }),
 
     // GitHub API

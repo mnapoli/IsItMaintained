@@ -2,12 +2,11 @@
 
 use Maintained\Application\Command\ClearCacheCommand;
 use Maintained\Application\Command\ShowStatisticsCommand;
+use Maintained\Application\Command\WarmupCacheCommand;
 use Maintained\Statistics\CachedStatisticsProvider;
 use Maintained\Statistics\StatisticsComputer;
 use Maintained\Statistics\StatisticsProvider;
 use Maintained\Statistics\StatisticsProviderLogger;
-use Maintained\Storage\JsonFileStorage;
-use Maintained\Storage\Storage;
 use function DI\factory;
 use function DI\link;
 use function DI\object;
@@ -45,17 +44,15 @@ return [
     StatisticsProvider::class => object(CachedStatisticsProvider::class)
         ->constructorParameter('wrapped', link(StatisticsProviderLogger::class)),
     StatisticsProviderLogger::class => object()
-        ->constructorParameter('wrapped', link(StatisticsComputer::class)),
+        ->constructorParameter('wrapped', link(StatisticsComputer::class))
+        ->constructorParameter('repositoryStorage', link('storage.repositories')),
     StatisticsComputer::class => object()
         ->constructorParameter('excludedLabels', link('issues.label_exclusions')),
 
     // CLI commands
     ClearCacheCommand::class => object()
-        ->lazy()
         ->constructorParameter('cacheDirectory', link('directory.cache')),
-    ShowStatisticsCommand::class => object()
-        ->lazy(),
-
-    Storage::class => object(JsonFileStorage::class)
-        ->constructorParameter('directory', link('directory.data')),
+    ShowStatisticsCommand::class => object(),
+    WarmupCacheCommand::class => object()
+        ->constructorParameter('repositoryStorage', link('storage.repositories')),
 ];

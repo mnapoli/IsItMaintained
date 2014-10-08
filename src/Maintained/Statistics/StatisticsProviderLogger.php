@@ -2,7 +2,8 @@
 
 namespace Maintained\Statistics;
 
-use Maintained\Storage\Storage;
+use BlackBox\MapStorage;
+use Maintained\Repository;
 
 /**
  * Logs accesses to the statistics provider.
@@ -17,29 +18,25 @@ class StatisticsProviderLogger implements StatisticsProvider
     private $wrapped;
 
     /**
-     * @var Storage
+     * @var MapStorage
      */
-    private $storage;
+    private $repositories;
 
-    public function __construct(StatisticsProvider $wrapped, Storage $storage)
+    public function __construct(StatisticsProvider $wrapped, MapStorage $repositoryStorage)
     {
         $this->wrapped = $wrapped;
-        $this->storage = $storage;
+        $this->repositories = $repositoryStorage;
     }
 
     public function getStatistics($user, $repository)
     {
-        $id = $user . '/' . $repository;
-
-        $repositories = $this->storage->retrieve('repositories');
-        $repositories = is_array($repositories) ? $repositories : [];
-
         // Fetch first, so that if an exception happens, we don't store the repository
         $statistics = $this->wrapped->getStatistics($user, $repository);
 
-        if (! in_array($id, $repositories)) {
-            $repositories[] = $id;
-            $this->storage->store('repositories', $repositories);
+        // Store it
+        $id = $user . '/' . $repository;
+        if (! $this->repositories->get($id)) {
+            $this->repositories->set($id, new Repository($id));
         }
 
         return $statistics;

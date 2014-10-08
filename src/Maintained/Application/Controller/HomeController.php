@@ -2,7 +2,8 @@
 
 namespace Maintained\Application\Controller;
 
-use Maintained\Storage\Storage;
+use BlackBox\MapStorage;
+use DI\Annotation\Inject;
 use Twig_Environment;
 
 /**
@@ -10,10 +11,24 @@ use Twig_Environment;
  */
 class HomeController
 {
-    public function __invoke(Twig_Environment $twig, Storage $storage)
+    /**
+     * @Inject
+     * @var Twig_Environment
+     */
+    private $twig;
+
+    /**
+     * @Inject("storage.repositories")
+     * @var MapStorage
+     */
+    private $repositories;
+
+    public function __invoke()
     {
-        $latestRepositories = array_reverse($storage->retrieve('repositories'));
+        $latestRepositories = $this->repositories->getData() ?: [];
+        $latestRepositories = array_reverse($latestRepositories);
         $latestRepositories = array_slice($latestRepositories, 0, 9);
+        $latestRepositories = array_keys($latestRepositories);
 
         $showcase = [
             'symfony/symfony'           => 'Symfony 2',
@@ -27,7 +42,7 @@ class HomeController
             'guzzle/guzzle'             => 'Guzzle',
         ];
 
-        echo $twig->render('home.twig', [
+        echo $this->twig->render('home.twig', [
             'latestRepositories' => $latestRepositories,
             'showcase' => $showcase,
         ]);
