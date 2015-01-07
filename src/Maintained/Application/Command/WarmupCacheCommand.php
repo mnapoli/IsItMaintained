@@ -51,7 +51,15 @@ class WarmupCacheCommand extends Command
 
             list($user, $repo) = explode('/', $slug, 2);
 
-            $this->statisticsProvider->getStatistics($user, $repo);
+            try {
+                $this->statisticsProvider->getStatistics($user, $repo);
+            } catch (\Exception $e) {
+                $output->writeln(sprintf(
+                    '<error>Error while fetching statistics for %s</error>',
+                    $slug
+                ));
+                $output->writeln(sprintf('<error>%s: %s</error>', get_class($e), $e->getMessage()));
+            }
         }
     }
 }

@@ -70,7 +70,7 @@ class UpdateStatisticsCommand extends Command
 
             $timer = microtime(true);
 
-            $this->update($repository);
+            $this->update($repository, $output);
 
             $output->writeln(sprintf('Took %ds', microtime(true) - $timer));
 
@@ -82,14 +82,22 @@ class UpdateStatisticsCommand extends Command
         return 0;
     }
 
-    private function update(Repository $repository)
+    private function update(Repository $repository, OutputInterface $output)
     {
         // Clear the cache
         $this->statisticsCache->set($repository->getName(), null);
 
         // Warmup the cache
-        list($user, $repositoryName) = explode('/', $repository->getName(), 2);
-        $this->statisticsProvider->getStatistics($user, $repositoryName);
+        try {
+            list($user, $repositoryName) = explode('/', $repository->getName(), 2);
+            $this->statisticsProvider->getStatistics($user, $repositoryName);
+        } catch (\Exception $e) {
+            $output->writeln(sprintf(
+                '<error>Error while fetching statistics for %s</error>',
+                $repository->getName()
+            ));
+            $output->writeln(sprintf('<error>%s: %s</error>', get_class($e), $e->getMessage()));
+        }
 
         // Mark the repository updated
         $repository->update();
