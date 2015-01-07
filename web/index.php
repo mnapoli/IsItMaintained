@@ -4,11 +4,15 @@ use Aura\Router\Router;
 use DI\Container;
 use Maintained\Application\Controller\Error404Controller;
 use Maintained\Application\Controller\MaintenanceController;
+use Monolog\ErrorHandler;
+use Psr\Log\LoggerInterface;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 /** @var Container $container */
 $container = require __DIR__ . '/../app/container.php';
+
+ErrorHandler::register($container->get(LoggerInterface::class));
 
 if ($container->get('maintenance')) {
     $controller = MaintenanceController::class;

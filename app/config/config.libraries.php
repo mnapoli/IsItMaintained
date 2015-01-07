@@ -18,7 +18,10 @@ use Github\HttpClient\CachedHttpClient;
 use Interop\Container\ContainerInterface;
 use Maintained\Application\Twig\TwigExtension;
 use Maintained\Repository;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use PiwikTwigExtension\PiwikTwigExtension;
+use Psr\Log\LoggerInterface;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgRender;
 use function DI\factory;
@@ -41,6 +44,14 @@ return [
         }
 
         return $router;
+    }),
+
+    // Logger
+    LoggerInterface::class => factory(function (ContainerInterface $c) {
+        $logger = new Logger('main');
+        $file = $c->get('directory.logs') . '/app.log';
+        $logger->pushHandler(new StreamHandler($file, Logger::WARNING));
+        return $logger;
     }),
 
     // Badge generator

@@ -2,6 +2,8 @@
 !/app/cache/.gitkeep
 /app/data/*
 !/app/data/.gitkeep
+/app/logs/*
+!/app/logs/.gitkeep
 /app/config/parameters.php
 /vendor/
 /web/vendor/

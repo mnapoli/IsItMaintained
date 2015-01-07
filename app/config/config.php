@@ -18,6 +18,7 @@ return [
 
     'directory.cache' => __DIR__ . '/../../app/cache',
     'directory.data' => __DIR__ . '/../../app/data',
+    'directory.logs' => __DIR__ . '/../../app/logs',
 
     // Routing
     'routes' => require __DIR__ . '/routes.php',
