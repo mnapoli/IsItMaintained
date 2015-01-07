@@ -25,7 +25,7 @@ class HomeController
 
     public function __invoke()
     {
-        $latestRepositories = $this->repositories->getData() ?: [];
+        $latestRepositories = iterator_to_array($this->repositories);
         $latestRepositories = array_reverse($latestRepositories);
         $latestRepositories = array_slice($latestRepositories, 0, 9);
         $latestRepositories = array_keys($latestRepositories);
