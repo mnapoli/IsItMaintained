@@ -16,10 +16,12 @@ use Symfony\Component\Filesystem\Filesystem;
 class ClearCacheCommand extends Command
 {
     private $cacheDirectory;
+    private $dataDirectory;
 
-    public function __construct($cacheDirectory)
+    public function __construct($cacheDirectory, $dataDirectory)
     {
         $this->cacheDirectory = $cacheDirectory;
+        $this->dataDirectory = $dataDirectory;
 
         parent::__construct();
     }
@@ -31,7 +33,7 @@ class ClearCacheCommand extends Command
             ->addArgument(
                 'name',
                 InputArgument::OPTIONAL,
-                'Which cache to clear (app, github, all). By default: "all"',
+                'Which cache to clear (statistics, github, all). By default: "all"',
                 'all'
             );
     }
@@ -47,9 +49,9 @@ class ClearCacheCommand extends Command
             $output->writeln('<info>GitHub cache cleared</info>');
         }
 
-        if ($cache === 'app' || $cache === 'all') {
-            $fs->remove($this->cacheDirectory . '/app');
-            $output->writeln('<info>Application cache cleared</info>');
+        if ($cache === 'statistics' || $cache === 'all') {
+            $fs->remove($this->dataDirectory . '/statistics');
+            $output->writeln('<info>Statistics cache cleared</info>');
         }
     }
 }

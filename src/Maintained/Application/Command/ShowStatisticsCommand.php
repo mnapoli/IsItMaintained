@@ -2,7 +2,6 @@
 
 namespace Maintained\Application\Command;
 
-use Maintained\Statistics\StatisticsComputer;
 use Maintained\Statistics\StatisticsProvider;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -21,7 +20,7 @@ class ShowStatisticsCommand extends Command
      */
     private $statisticsProvider;
 
-    public function __construct(StatisticsComputer $statisticsProvider)
+    public function __construct(StatisticsProvider $statisticsProvider)
     {
         $this->statisticsProvider = $statisticsProvider;
 

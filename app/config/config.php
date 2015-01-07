@@ -2,6 +2,7 @@
 
 use Maintained\Application\Command\ClearCacheCommand;
 use Maintained\Application\Command\ShowStatisticsCommand;
+use Maintained\Application\Command\UpdateStatisticsCommand;
 use Maintained\Application\Command\WarmupCacheCommand;
 use Maintained\Statistics\CachedStatisticsProvider;
 use Maintained\Statistics\StatisticsComputer;
@@ -41,7 +42,9 @@ return [
         '(.*[\s\.-])?dx',
     ],
 
-    StatisticsProvider::class => object(CachedStatisticsProvider::class)
+    StatisticsProvider::class => link(CachedStatisticsProvider::class),
+    CachedStatisticsProvider::class => object()
+        ->constructorParameter('cache', link('storage.statistics'))
         ->constructorParameter('wrapped', link(StatisticsProviderLogger::class)),
     StatisticsProviderLogger::class => object()
         ->constructorParameter('wrapped', link(StatisticsComputer::class))
@@ -51,8 +54,12 @@ return [
 
     // CLI commands
     ClearCacheCommand::class => object()
-        ->constructorParameter('cacheDirectory', link('directory.cache')),
+        ->constructorParameter('cacheDirectory', link('directory.cache'))
+        ->constructorParameter('dataDirectory', link('directory.data')),
     ShowStatisticsCommand::class => object(),
     WarmupCacheCommand::class => object()
         ->constructorParameter('repositoryStorage', link('storage.repositories')),
+    UpdateStatisticsCommand::class => object()
+        ->constructorParameter('repositoryStorage', link('storage.repositories'))
+        ->constructorParameter('statisticsCache', link('storage.statistics')),
 ];

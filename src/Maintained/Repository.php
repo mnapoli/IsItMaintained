@@ -53,4 +53,16 @@ class Repository
 
         return DateTime::createFromFormat('U', $this->lastUpdate);
     }
+
+    /**
+     * @return int|null
+     */
+    public function getLastUpdateTimestamp()
+    {
+        if ($this->lastUpdate === null) {
+            return null;
+        }
+
+        return $this->lastUpdate;
+    }
 }

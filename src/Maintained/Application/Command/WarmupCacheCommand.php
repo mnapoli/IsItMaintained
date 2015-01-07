@@ -42,10 +42,7 @@ class WarmupCacheCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $repositories = $this->repositories->getData();
-        $repositories = is_array($repositories) ? $repositories : [];
-
-        foreach ($repositories as $id => $repository) {
+        foreach ($this->repositories as $id => $repository) {
             /** @var Repository $repository */
             $repository = $this->repositories->get($id);
             $slug = $repository->getName();

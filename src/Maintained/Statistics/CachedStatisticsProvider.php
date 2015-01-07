@@ -2,7 +2,7 @@
 
 namespace Maintained\Statistics;
 
-use Doctrine\Common\Cache\Cache;
+use BlackBox\MapStorage;
 
 /**
  * Wraps and caches another provider.
@@ -11,10 +11,8 @@ use Doctrine\Common\Cache\Cache;
  */
 class CachedStatisticsProvider implements StatisticsProvider
 {
-    const CACHE_NAMESPACE = 'statistics/';
-
     /**
-     * @var Cache
+     * @var MapStorage
      */
     private $cache;
 
@@ -23,7 +21,7 @@ class CachedStatisticsProvider implements StatisticsProvider
      */
     private $wrapped;
 
-    public function __construct(Cache $cache, StatisticsProvider $wrapped)
+    public function __construct(MapStorage $cache, StatisticsProvider $wrapped)
     {
         $this->cache = $cache;
         $this->wrapped = $wrapped;
@@ -31,14 +29,14 @@ class CachedStatisticsProvider implements StatisticsProvider
 
     public function getStatistics($user, $repository)
     {
-        $key = self::CACHE_NAMESPACE . $user . '/' . $repository;
+        $id = $user . '/' . $repository;
 
-        $statistics = $this->cache->fetch($key);
+        $statistics = $this->cache->get($id);
 
-        if ($statistics === false) {
+        if (! $statistics instanceof Statistics) {
             $statistics = $this->wrapped->getStatistics($user, $repository);
 
-            $this->cache->save($key, $statistics);
+            $this->cache->set($id, $statistics);
         }
 
         return $statistics;

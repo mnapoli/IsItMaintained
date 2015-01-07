@@ -2,10 +2,14 @@
 
 use Aura\Router\Router;
 use Aura\Router\RouterFactory;
-use BlackBox\Adapter\FileStorage;
-use BlackBox\Transformer\ArrayMapAdapter;
+use BlackBox\Adapter\MapAdapter;
+use BlackBox\Backend\FileStorage;
+use BlackBox\Backend\MultipleFileStorage;
 use BlackBox\Transformer\JsonEncoder;
+use BlackBox\Transformer\MapWithTransformers;
 use BlackBox\Transformer\ObjectArrayMapper;
+use BlackBox\Transformer\PhpSerializeEncoder;
+use BlackBox\Transformer\StorageWithTransformers;
 use DI\Container;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
@@ -65,14 +69,22 @@ return [
     }),
 
     'storage.repositories' => factory(function (ContainerInterface $c) {
-        return new ObjectArrayMapper(
-            new ArrayMapAdapter(
-                new JsonEncoder(
-                    new FileStorage($c->get('directory.data') . '/repositories.json')
-                )
-            ),
-            Repository::class
+        $backend = new StorageWithTransformers(
+            new FileStorage($c->get('directory.data') . '/repositories.json')
         );
+        $backend->addTransformer(new JsonEncoder(true));
+        $storage = new MapWithTransformers(
+            new MapAdapter($backend)
+        );
+        $storage->addTransformer(new ObjectArrayMapper(Repository::class));
+        return $storage;
+    }),
+    'storage.statistics' => factory(function (ContainerInterface $c) {
+        $storage = new MapWithTransformers(
+            new MultipleFileStorage($c->get('directory.data') . '/statistics')
+        );
+        $storage->addTransformer(new PhpSerializeEncoder);
+        return $storage;
     }),
 
     // GitHub API

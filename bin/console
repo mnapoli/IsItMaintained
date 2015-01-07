@@ -4,6 +4,7 @@
 use DI\Container;
 use Maintained\Application\Command\ClearCacheCommand;
 use Maintained\Application\Command\ShowStatisticsCommand;
+use Maintained\Application\Command\UpdateStatisticsCommand;
 use Maintained\Application\Command\WarmupCacheCommand;
 use Symfony\Component\Console\Application;
 
@@ -17,5 +18,6 @@ $application = new Application('Maintained');
 $application->add($container->get(ClearCacheCommand::class));
 $application->add($container->get(WarmupCacheCommand::class));
 $application->add($container->get(ShowStatisticsCommand::class));
+$application->add($container->get(UpdateStatisticsCommand::class));
 
 $application->run();
