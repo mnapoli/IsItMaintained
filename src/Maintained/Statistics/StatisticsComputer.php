@@ -33,9 +33,9 @@ class StatisticsComputer implements StatisticsProvider
     public function getStatistics($user, $repository)
     {
         $issues = $this->fetchIssues($user, $repository);
-        $collaborators = $this->fetchCollaborators($user, $repository);
+//        $collaborators = $this->fetchCollaborators($user, $repository);
 
-        $issues = $this->excludeIssuesCreatedByCollaborators($issues, $collaborators);
+//        $issues = $this->excludeIssuesCreatedByCollaborators($issues, $collaborators);
         $issues = $this->excludeIssuesByLabels($issues, $this->excludedLabels);
 
         $latestIssues = $this->keepLatestIssues($issues);
