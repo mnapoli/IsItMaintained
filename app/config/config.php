@@ -31,18 +31,6 @@ return [
     // GitHub API
     'github.auth_token' => null,
 
-    'issues.label_exclusions' => [
-        '.*enhancement.*',
-        '.*feature.*',
-        '.*task.*',
-        '.*refactoring.*',
-        '.*duplicate.*',
-        '(.*[\s\.-])?wip',
-        '(.*[\s\.-])?rfc',
-        '(.*[\s\.-])?poc',
-        '(.*[\s\.-])?dx',
-    ],
-
     StatisticsProvider::class => link(CachedStatisticsProvider::class),
     CachedStatisticsProvider::class => object()
         ->constructorParameter('cache', link('storage.statistics'))
@@ -50,8 +38,6 @@ return [
     StatisticsProviderLogger::class => object()
         ->constructorParameter('wrapped', link(StatisticsComputer::class))
         ->constructorParameter('repositoryStorage', link('storage.repositories')),
-    StatisticsComputer::class => object()
-        ->constructorParameter('excludedLabels', link('issues.label_exclusions')),
 
     // CLI commands
     ClearCacheCommand::class => object()

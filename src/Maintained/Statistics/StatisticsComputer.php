@@ -3,7 +3,7 @@
 namespace Maintained\Statistics;
 
 use Github\Client;
-use Github\ResultPager;
+use Maintained\GitHub\SearchPager;
 use Maintained\Issue;
 use Maintained\TimeInterval;
 
@@ -22,27 +22,47 @@ class StatisticsComputer implements StatisticsProvider
     /**
      * @var string[]
      */
-    private $excludedLabels;
+    private $excludedLabels = [
+        'enhancement',
+        'feature',
+        'task',
+        'refactoring',
+        'duplicate',
+    ];
 
-    public function __construct(Client $github, array $excludedLabels)
+    /**
+     * @var string[]
+     */
+    private $excludedLabelRegexes = [
+        '.*enhancement.*',
+        '.*feature.*',
+        '.*task.*',
+        '.*refactoring.*',
+        '.*duplicate.*',
+        '(.*[\s\.-])?wip',
+        '(.*[\s\.-])?rfc',
+        '(.*[\s\.-])?poc',
+        '(.*[\s\.-])?dx',
+    ];
+
+    public function __construct(Client $github)
     {
         $this->github = $github;
-        $this->excludedLabels = $excludedLabels;
     }
 
     public function getStatistics($user, $repository)
     {
         $issues = $this->fetchIssues($user, $repository);
+
+        // Currently disabled because GitHub changed permissions: requires push access
 //        $collaborators = $this->fetchCollaborators($user, $repository);
-
 //        $issues = $this->excludeIssuesCreatedByCollaborators($issues, $collaborators);
-        $issues = $this->excludeIssuesByLabels($issues, $this->excludedLabels);
 
-        $latestIssues = $this->keepLatestIssues($issues);
+        $issues = $this->filterIssuesByLabels($issues);
 
         $statistics = new Statistics();
-        $statistics->resolutionTime = $this->computeResolutionTime($latestIssues);
-        $statistics->openIssuesRatio = $this->computeOpenIssueRatio($issues);
+        $statistics->resolutionTime = $this->computeResolutionTime($issues);
+        $statistics->openIssuesRatio = $this->computeOpenIssueRatio($user, $repository);
 
         return $statistics;
     }
@@ -61,24 +81,20 @@ class StatisticsComputer implements StatisticsProvider
     }
 
     /**
-     * @param Issue[] $issues
+     * @param string $user
+     * @param string $repository
      * @return float
      */
-    private function computeOpenIssueRatio(array $issues)
+    private function computeOpenIssueRatio($user, $repository)
     {
-        if (empty($issues)) {
-            return 0;
-        }
+        $results = $this->github->search()->issues("type:issue repo:$user/$repository state:open");
+        $openCount = $results['total_count'];
+        $results = $this->github->search()->issues("type:issue repo:$user/$repository state:closed");
+        $closedCount = $results['total_count'];
 
-        $openIssues = 0;
+        $total = $openCount + $closedCount;
 
-        foreach ($issues as $issue) {
-            if ($issue->isOpen()) {
-                $openIssues++;
-            }
-        }
-
-        return $openIssues / count($issues);
+        return ($total !== 0) ? $openCount / $total : 0;
     }
 
     /**
@@ -95,14 +111,13 @@ class StatisticsComputer implements StatisticsProvider
 
     /**
      * @param Issue[]  $issues
-     * @param string[] $labels
      * @return Issue[]
      */
-    private function excludeIssuesByLabels(array $issues, array $labels)
+    private function filterIssuesByLabels(array $issues)
     {
-        $regex = '/^(' . implode(')|(', $labels) . ')$/i';
+        $regex = '/^(' . implode(')|(', $this->excludedLabelRegexes) . ')$/i';
 
-        return array_filter($issues, function (Issue $issue) use ($labels, $regex) {
+        return array_filter($issues, function (Issue $issue) use ($regex) {
             foreach ($issue->getLabels() as $label) {
                 $match = preg_match($regex, $label);
 
@@ -113,22 +128,6 @@ class StatisticsComputer implements StatisticsProvider
                 }
             }
             return true;
-        });
-    }
-
-    /**
-     * @param Issue[]  $issues
-     * @return Issue[]
-     */
-    private function keepLatestIssues(array $issues)
-    {
-        $sixMonthsAgo = new \DateTime('-6 month');
-
-        return array_filter($issues, function (Issue $issue) use ($sixMonthsAgo) {
-            if ($issue->isOpen()) {
-                return true;
-            }
-            return $issue->getOpenedAt() > $sixMonthsAgo;
         });
     }
 
@@ -156,28 +155,25 @@ class StatisticsComputer implements StatisticsProvider
         return $array[$middleIndex];
     }
 
-    /**
-     * @param string $user
-     * @param string $repository
-     * @return Issue[]
-     */
-    private function fetchIssues($user, $repository)
+    public function fetchIssues($user, $repository)
     {
-        /** @var \GitHub\Api\Issue $issueApi */
-        $issueApi = $this->github->api('issue');
+        $sixMonthsAgo = new \DateTime('-6 month');
+        $sixMonthsAgo = $sixMonthsAgo->format('Y-m-d');
 
-        $paginator = new ResultPager($this->github);
-        $issues = $paginator->fetchAll($issueApi, 'all', [
-            $user,
-            $repository,
-            ['state' => 'all'],
-        ]);
+        // Pre-filter with labels to fetch as little issues as possible
+        $excludedLabels = array_map(function ($label) {
+            return '-label:' . $label;
+        }, $this->excludedLabels);
+        $excludedLabels = implode(' ', $excludedLabels);
 
-        $issues = array_map(function (array $data) {
+        $query = "repo:$user/$repository type:issue created:>$sixMonthsAgo $excludedLabels";
+
+        $paginator = new SearchPager($this->github);
+        $results = $paginator->fetchAll($query);
+
+        return array_map(function (array $data) {
             return Issue::fromArray($data);
-        }, $issues);
-
-        return $issues;
+        }, $results);
     }
 
     /**
