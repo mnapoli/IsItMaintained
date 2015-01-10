@@ -11,9 +11,9 @@ Monitoring open source projects activity.
 
 Not all issues are taken into account:
 
-- Issues from collaborators are ignored
 - Issues with labels like "feature", "enhancement", "duplicate"… are ignored
-- For the issue median closing time, issues closed and older than 6 months are ignored
+- For the issue median closing time issues older than 6 months are ignored
+- ~~Issues from collaborators are ignored~~ (GitHub updated their API and it's not possible anymore)
 
 Ideas:
 
