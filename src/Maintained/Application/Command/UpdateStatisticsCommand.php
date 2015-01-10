@@ -6,6 +6,7 @@ use BlackBox\MapStorage;
 use Maintained\Repository;
 use Maintained\Statistics\StatisticsProvider;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\LockHandler;
@@ -47,7 +48,8 @@ class UpdateStatisticsCommand extends Command
     protected function configure()
     {
         $this->setName('stats:update')
-            ->setDescription('Updates the cached statistics');
+            ->setDescription('Updates the cached statistics')
+            ->addArgument('repository', InputArgument::OPTIONAL, 'In the form "user/repository"');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -58,12 +60,12 @@ class UpdateStatisticsCommand extends Command
             return 0;
         }
 
-        /** @var Repository[] $repositories */
-        $repositories = iterator_to_array($this->repositoryStorage);
-
-        usort($repositories, function (Repository $a, Repository $b) {
-            return $a->getLastUpdateTimestamp() - $b->getLastUpdateTimestamp();
-        });
+        $repositoryName = $input->getArgument('repository');
+        if ($repositoryName) {
+            $repositories = [ $this->repositoryStorage->get($repositoryName) ];
+        } else {
+            $repositories = $this->getRepositoriesToUpdate();
+        }
 
         foreach ($repositories as $repository) {
             $output->writeln(sprintf('Updating <info>%s</info>', $repository->getName()));
@@ -73,13 +75,25 @@ class UpdateStatisticsCommand extends Command
             $this->update($repository, $output);
 
             $output->writeln(sprintf('Took %ds', microtime(true) - $timer));
-
-            // Updates only 1 at a time for now
-            break;
         }
 
         $lock->release();
         return 0;
+    }
+
+    /**
+     * @return Repository[]
+     */
+    private function getRepositoriesToUpdate()
+    {
+        $repositories = iterator_to_array($this->repositoryStorage);
+
+        usort($repositories, function (Repository $a, Repository $b) {
+            return $a->getLastUpdateTimestamp() - $b->getLastUpdateTimestamp();
+        });
+
+        // For now processes just one
+        return [ reset($repositories) ];
     }
 
     private function update(Repository $repository, OutputInterface $output)
