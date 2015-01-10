@@ -28,6 +28,11 @@ class StatisticsComputer implements StatisticsProvider
         'task',
         'refactoring',
         'duplicate',
+        'tests',
+        'refactoring',
+        'suggestion',
+        'wip',
+        'rfc',
     ];
 
     /**
@@ -39,6 +44,9 @@ class StatisticsComputer implements StatisticsProvider
         '.*task.*',
         '.*refactoring.*',
         '.*duplicate.*',
+        '.*test.*',
+        '.*suggestion.*',
+        '.*refactoring.*',
         '(.*[\s\.-])?wip',
         '(.*[\s\.-])?rfc',
         '(.*[\s\.-])?poc',
@@ -53,10 +61,6 @@ class StatisticsComputer implements StatisticsProvider
     public function getStatistics($user, $repository)
     {
         $issues = $this->fetchIssues($user, $repository);
-
-        // Currently disabled because GitHub changed permissions: requires push access
-//        $collaborators = $this->fetchCollaborators($user, $repository);
-//        $issues = $this->excludeIssuesCreatedByCollaborators($issues, $collaborators);
 
         $issues = $this->filterIssuesByLabels($issues);
 
@@ -87,26 +91,16 @@ class StatisticsComputer implements StatisticsProvider
      */
     private function computeOpenIssueRatio($user, $repository)
     {
-        $results = $this->github->search()->issues("type:issue repo:$user/$repository state:open");
+        $query = "repo:$user/$repository type:issue " . $this->getExcludedLabelsSearchString();
+
+        $results = $this->github->search()->issues("$query state:open");
         $openCount = $results['total_count'];
-        $results = $this->github->search()->issues("type:issue repo:$user/$repository state:closed");
+        $results = $this->github->search()->issues("$query state:closed");
         $closedCount = $results['total_count'];
 
         $total = $openCount + $closedCount;
 
         return ($total !== 0) ? $openCount / $total : 0;
-    }
-
-    /**
-     * @param Issue[]  $issues
-     * @param string[] $collaborators
-     * @return Issue[]
-     */
-    private function excludeIssuesCreatedByCollaborators(array $issues, array $collaborators)
-    {
-        return array_filter($issues, function (Issue $issue) use ($collaborators) {
-            return !in_array($issue->getAuthor(), $collaborators);
-        });
     }
 
     /**
@@ -161,10 +155,7 @@ class StatisticsComputer implements StatisticsProvider
         $sixMonthsAgo = $sixMonthsAgo->format('Y-m-d');
 
         // Pre-filter with labels to fetch as little issues as possible
-        $excludedLabels = array_map(function ($label) {
-            return '-label:' . $label;
-        }, $this->excludedLabels);
-        $excludedLabels = implode(' ', $excludedLabels);
+        $excludedLabels = $this->getExcludedLabelsSearchString();
 
         $query = "repo:$user/$repository type:issue created:>$sixMonthsAgo $excludedLabels";
 
@@ -177,18 +168,14 @@ class StatisticsComputer implements StatisticsProvider
     }
 
     /**
-     * @param string $user
-     * @param string $repository
-     * @return string[]
+     * @return string
      */
-    private function fetchCollaborators($user, $repository)
+    private function getExcludedLabelsSearchString()
     {
-        /** @var \GitHub\Api\Repo $repositoryApi */
-        $repositoryApi = $this->github->api('repo');
-        $collaborators = $repositoryApi->collaborators()->all($user, $repository);
+        $excludedLabels = array_map(function ($label) {
+            return '-label:' . $label;
+        }, $this->excludedLabels);
 
-        return array_map(function ($user) {
-            return $user['login'];
-        }, $collaborators);
+        return implode(' ', $excludedLabels);
     }
 }
