@@ -62,7 +62,11 @@ class UpdateStatisticsCommand extends Command
 
         $repositoryName = $input->getArgument('repository');
         if ($repositoryName) {
-            $repositories = [ $this->repositoryStorage->get($repositoryName) ];
+            $repository = $this->repositoryStorage->get($repositoryName);
+            if ($repository === null) {
+                throw new \InvalidArgumentException('Unknown repository ' . $repositoryName);
+            }
+            $repositories = [ $repository ];
         } else {
             $repositories = $this->getRepositoriesToUpdate();
         }
