@@ -24,7 +24,7 @@
         "symfony/console": "~2.6",
         "symfony/filesystem": "~2.6",
         "mnapoli/piwik-twig-extension": "~1.0",
-        "mnapoli/blackbox": "~0.4",
+        "mnapoli/blackbox": "~0.4.0",
         "psr/log": "~1.0",
         "monolog/monolog": "~1.10"
     },

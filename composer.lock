@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bb8f04333cfa3f0fac548f298cba611a",
+    "hash": "dd38612a7794e4deb543697934b4a460",
     "packages": [
         {
             "name": "aura/router",
@@ -496,16 +496,16 @@
         },
         {
             "name": "mnapoli/blackbox",
-            "version": "0.6.1",
+            "version": "0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mnapoli/BlackBox.git",
-                "reference": "71fcc7b4d996610636da682c446a52b87dbe80a9"
+                "reference": "e71402579d567c64886a57780c6e3b775df8ca62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mnapoli/BlackBox/zipball/71fcc7b4d996610636da682c446a52b87dbe80a9",
-                "reference": "71fcc7b4d996610636da682c446a52b87dbe80a9",
+                "url": "https://api.github.com/repos/mnapoli/BlackBox/zipball/e71402579d567c64886a57780c6e3b775df8ca62",
+                "reference": "e71402579d567c64886a57780c6e3b775df8ca62",
                 "shasum": ""
             },
             "require": {
@@ -514,11 +514,9 @@
             },
             "require-dev": {
                 "doctrine/dbal": "~2.4",
-                "jms/serializer": "~0.15",
                 "phpseclib/phpseclib": "*",
                 "phpunit/phpunit": "~4.0",
-                "predis/predis": "~1.0",
-                "symfony/filesystem": "~2.5",
+                "symfony/filesystem": "~2.6",
                 "symfony/yaml": "~2.6"
             },
             "type": "library",
@@ -531,7 +529,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2015-01-10 01:47:41"
+            "time": "2015-01-07 08:42:09"
         },
         {
             "name": "mnapoli/php-di",
