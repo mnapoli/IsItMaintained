@@ -3,6 +3,8 @@
 namespace Maintained\Statistics;
 
 use Github\Client;
+use Github\Exception\RuntimeException;
+use Github\Exception\ValidationFailedException;
 use Maintained\GitHub\SearchPager;
 use Maintained\Issue;
 use Maintained\TimeInterval;
@@ -160,7 +162,14 @@ class StatisticsComputer implements StatisticsProvider
         $query = "repo:$user/$repository type:issue created:>$sixMonthsAgo $excludedLabels";
 
         $paginator = new SearchPager($this->github);
-        $results = $paginator->fetchAll($query);
+        try {
+            $results = $paginator->fetchAll($query);
+        } catch (ValidationFailedException $e) {
+            if (strpos($e->getMessage(), 'Validation Failed: Field "q" is invalid') === 0) {
+                throw new RuntimeException('Not Found');
+            }
+            throw $e;
+        }
 
         return array_map(function (array $data) {
             return Issue::fromArray($data);
