@@ -34,7 +34,7 @@ class HomeController
             'symfony/symfony'           => 'Symfony 2',
             'zendframework/zf2'         => 'Zend Framework 2',
             'zendframework/zf1'         => 'Zend Framework 1',
-            'codeguy/Slim'              => 'Slim',
+            'slimphp/Slim'              => 'Slim',
             'silexphp/Silex'            => 'Silex',
             'cakephp/cakephp'           => 'CakePHP',
             'sebastianbergmann/phpunit' => 'PHPUnit',
