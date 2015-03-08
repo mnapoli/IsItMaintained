@@ -38,11 +38,11 @@ class HomeController
             'zendframework/zf2'      => 'Zend Framework 2',
             'laravel/framework'      => 'Laravel',
             'angular/angular.js'     => 'AngularJS',
-            'facebook/react'         => 'React',
-            'robbyrussell/oh-my-zsh' => 'Oh My Zsh',
-            'ariya/phantomjs'        => 'PhantomJS',
             'meteor/meteor'          => 'Meteor',
+            'facebook/react'         => 'React',
+            'ariya/phantomjs'        => 'PhantomJS',
             'gulpjs/gulp'            => 'Gulp',
+            'robbyrussell/oh-my-zsh' => 'Oh My Zsh',
         ];
 
         echo $this->twig->render('home.twig', [
