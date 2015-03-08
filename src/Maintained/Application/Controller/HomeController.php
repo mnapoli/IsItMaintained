@@ -31,20 +31,21 @@ class HomeController
         $latestRepositories = array_keys($latestRepositories);
 
         $showcase = [
-            'symfony/symfony'           => 'Symfony 2',
-            'zendframework/zf2'         => 'Zend Framework 2',
-            'zendframework/zf1'         => 'Zend Framework 1',
-            'slimphp/Slim'              => 'Slim',
-            'silexphp/Silex'            => 'Silex',
-            'cakephp/cakephp'           => 'CakePHP',
-            'sebastianbergmann/phpunit' => 'PHPUnit',
-            'piwik/piwik'               => 'Piwik',
-            'guzzle/guzzle'             => 'Guzzle',
+            'rails/rails'            => 'Rails',
+            'mitsuhiko/flask'        => 'Flask',
+            'strongloop/express'     => 'Express',
+            'symfony/symfony'        => 'Symfony',
+            'zendframework/zf2'      => 'Zend Framework 2',
+            'laravel/framework'      => 'Laravel',
+            'angular/angular.js'     => 'AngularJS',
+            'facebook/react'         => 'React',
+            'robbyrussell/oh-my-zsh' => 'Oh My Zsh',
+            'ariya/phantomjs'        => 'PhantomJS',
         ];
 
         echo $this->twig->render('home.twig', [
             'latestRepositories' => $latestRepositories,
-            'showcase' => $showcase,
+            'showcase'           => $showcase,
         ]);
     }
 }
