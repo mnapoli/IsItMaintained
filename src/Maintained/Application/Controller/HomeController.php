@@ -41,6 +41,8 @@ class HomeController
             'facebook/react'         => 'React',
             'robbyrussell/oh-my-zsh' => 'Oh My Zsh',
             'ariya/phantomjs'        => 'PhantomJS',
+            'meteor/meteor'          => 'Meteor',
+            'gulpjs/gulp'            => 'Gulp',
         ];
 
         echo $this->twig->render('home.twig', [
