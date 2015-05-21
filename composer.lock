@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dd38612a7794e4deb543697934b4a460",
+    "hash": "a01eab3ffdca88cd6a71d08b59099b15",
     "packages": [
         {
             "name": "aura/router",
@@ -62,16 +62,16 @@
         },
         {
             "name": "badges/poser",
-            "version": "dev-master",
+            "version": "v1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/badges/poser.git",
-                "reference": "f5e73a28bb8d7987ad6c72bb2d885189f603b34c"
+                "reference": "10aaca8a9f8e5b23887902c440551584ceaf8fef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/badges/poser/zipball/f5e73a28bb8d7987ad6c72bb2d885189f603b34c",
-                "reference": "f5e73a28bb8d7987ad6c72bb2d885189f603b34c",
+                "url": "https://api.github.com/repos/badges/poser/zipball/10aaca8a9f8e5b23887902c440551584ceaf8fef",
+                "reference": "10aaca8a9f8e5b23887902c440551584ceaf8fef",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
                 "packagist",
                 "pin"
             ],
-            "time": "2014-08-24 16:58:19"
+            "time": "2015-04-20 20:12:36"
         },
         {
             "name": "container-interop/container-interop",
