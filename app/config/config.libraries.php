@@ -23,7 +23,7 @@ use Monolog\Logger;
 use PiwikTwigExtension\PiwikTwigExtension;
 use Psr\Log\LoggerInterface;
 use PUGX\Poser\Poser;
-use PUGX\Poser\Render\SvgRender;
+use PUGX\Poser\Render\SvgFlatRender;
 use function DI\factory;
 use function DI\link;
 use function DI\object;
@@ -56,7 +56,7 @@ return [
 
     // Badge generator
     Poser::class => object()
-        ->constructor(link(SvgRender::class)),
+        ->constructor(link(SvgFlatRender::class)),
 
     // Twig
     Twig_Environment::class => factory(function (ContainerInterface $c) {
