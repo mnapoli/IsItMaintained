@@ -1,3 +1,4 @@
+/.puli/
 /var/cache/*
 !/var/cache/.gitkeep
 /var/data/*
