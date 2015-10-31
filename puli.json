@@ -1,0 +1,172 @@
+{
+    "version": "1.0",
+    "name": "mnapoli/maintained",
+    "path-mappings": {
+        "/app": "res"
+    },
+    "config": {
+        "bootstrap-file": "vendor/autoload.php"
+    },
+    "packages": {
+        "aura/router": {
+            "install-path": "vendor/aura/router",
+            "installer": "composer"
+        },
+        "badges/poser": {
+            "install-path": "vendor/badges/poser",
+            "installer": "composer"
+        },
+        "container-interop/container-interop": {
+            "install-path": "vendor/container-interop/container-interop",
+            "installer": "composer"
+        },
+        "doctrine/annotations": {
+            "install-path": "vendor/doctrine/annotations",
+            "installer": "composer"
+        },
+        "doctrine/cache": {
+            "install-path": "vendor/doctrine/cache",
+            "installer": "composer"
+        },
+        "doctrine/lexer": {
+            "install-path": "vendor/doctrine/lexer",
+            "installer": "composer"
+        },
+        "filp/whoops": {
+            "install-path": "vendor/filp/whoops",
+            "installer": "composer"
+        },
+        "guzzle/guzzle": {
+            "install-path": "vendor/guzzle/guzzle",
+            "installer": "composer"
+        },
+        "knplabs/github-api": {
+            "install-path": "vendor/knplabs/github-api",
+            "installer": "composer"
+        },
+        "mnapoli/blackbox": {
+            "install-path": "vendor/mnapoli/blackbox",
+            "installer": "composer"
+        },
+        "mnapoli/piwik-twig-extension": {
+            "install-path": "vendor/mnapoli/piwik-twig-extension",
+            "installer": "composer"
+        },
+        "monolog/monolog": {
+            "install-path": "vendor/monolog/monolog",
+            "installer": "composer"
+        },
+        "php-di/invoker": {
+            "install-path": "vendor/php-di/invoker",
+            "installer": "composer"
+        },
+        "php-di/php-di": {
+            "install-path": "vendor/php-di/php-di",
+            "installer": "composer"
+        },
+        "php-di/phpdoc-reader": {
+            "install-path": "vendor/php-di/phpdoc-reader",
+            "installer": "composer"
+        },
+        "psr/http-message": {
+            "install-path": "vendor/psr/http-message",
+            "installer": "composer"
+        },
+        "psr/log": {
+            "install-path": "vendor/psr/log",
+            "installer": "composer"
+        },
+        "puli/composer-plugin": {
+            "install-path": "vendor/puli/composer-plugin",
+            "installer": "composer"
+        },
+        "puli/discovery": {
+            "install-path": "vendor/puli/discovery",
+            "installer": "composer"
+        },
+        "puli/repository": {
+            "install-path": "vendor/puli/repository",
+            "installer": "composer"
+        },
+        "puli/twig-extension": {
+            "install-path": "vendor/puli/twig-extension",
+            "installer": "composer"
+        },
+        "puli/url-generator": {
+            "install-path": "vendor/puli/url-generator",
+            "installer": "composer"
+        },
+        "ramsey/uuid": {
+            "install-path": "vendor/ramsey/uuid",
+            "installer": "composer"
+        },
+        "stratify/error-handler-module": {
+            "install-path": "vendor/stratify/error-handler-module",
+            "installer": "composer"
+        },
+        "stratify/framework": {
+            "install-path": "vendor/stratify/framework",
+            "installer": "composer"
+        },
+        "stratify/http": {
+            "install-path": "vendor/stratify/http",
+            "installer": "composer"
+        },
+        "stratify/router": {
+            "install-path": "vendor/stratify/router",
+            "installer": "composer"
+        },
+        "stratify/twig-module": {
+            "install-path": "vendor/stratify/twig-module",
+            "installer": "composer"
+        },
+        "symfony/console": {
+            "install-path": "vendor/symfony/console",
+            "installer": "composer"
+        },
+        "symfony/event-dispatcher": {
+            "install-path": "vendor/symfony/event-dispatcher",
+            "installer": "composer"
+        },
+        "symfony/filesystem": {
+            "install-path": "vendor/symfony/filesystem",
+            "installer": "composer"
+        },
+        "symfony/finder": {
+            "install-path": "vendor/symfony/finder",
+            "installer": "composer"
+        },
+        "symfony/process": {
+            "install-path": "vendor/symfony/process",
+            "installer": "composer"
+        },
+        "twig/twig": {
+            "install-path": "vendor/twig/twig",
+            "installer": "composer"
+        },
+        "webmozart/assert": {
+            "install-path": "vendor/webmozart/assert",
+            "installer": "composer"
+        },
+        "webmozart/expression": {
+            "install-path": "vendor/webmozart/expression",
+            "installer": "composer"
+        },
+        "webmozart/glob": {
+            "install-path": "vendor/webmozart/glob",
+            "installer": "composer"
+        },
+        "webmozart/key-value-store": {
+            "install-path": "vendor/webmozart/key-value-store",
+            "installer": "composer"
+        },
+        "webmozart/path-util": {
+            "install-path": "vendor/webmozart/path-util",
+            "installer": "composer"
+        },
+        "zendframework/zend-diactoros": {
+            "install-path": "vendor/zendframework/zend-diactoros",
+            "installer": "composer"
+        }
+    }
+}
