@@ -35,6 +35,7 @@ class StatisticsComputer implements StatisticsProvider
         'suggestion',
         'wip',
         'rfc',
+        'wishlist',
     ];
 
     /**
