@@ -28,8 +28,7 @@ Dropped ideas:
 
     $ composer install
     $ bower install
-    $ cd web/
-    $ php -S 0.0.0.0:8000 index.php
+    $ php -S 0.0.0.0:8000 -t web web/index.php
 
 The first time a badge is generated takes a few seconds, then it is cached. Be patient.
 
@@ -44,5 +43,6 @@ API token (https://github.com/settings/applications) and set it in `parameters.p
 
 ## Requirements
 
-- PHP 5.6
-- GD extension (`php5-gd`)
+- PHP 7.0
+- [Puli](http://puli.io) installed
+- GD extension
