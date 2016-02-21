@@ -4,8 +4,6 @@ namespace Maintained\Application\Controller;
 
 use BlackBox\MapStorage;
 use DI\Annotation\Inject;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Twig_Environment;
 
 /**

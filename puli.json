@@ -40,6 +40,10 @@
             "install-path": "vendor/guzzle/guzzle",
             "installer": "composer"
         },
+        "justinrainbow/json-schema": {
+            "install-path": "vendor/justinrainbow/json-schema",
+            "installer": "composer"
+        },
         "knplabs/github-api": {
             "install-path": "vendor/knplabs/github-api",
             "installer": "composer"
@@ -100,6 +104,10 @@
             "install-path": "vendor/ramsey/uuid",
             "installer": "composer"
         },
+        "seld/jsonlint": {
+            "install-path": "vendor/seld/jsonlint",
+            "installer": "composer"
+        },
         "stratify/error-handler-module": {
             "install-path": "vendor/stratify/error-handler-module",
             "installer": "composer"
@@ -136,6 +144,10 @@
             "install-path": "vendor/symfony/finder",
             "installer": "composer"
         },
+        "symfony/polyfill-mbstring": {
+            "install-path": "vendor/symfony/polyfill-mbstring",
+            "installer": "composer"
+        },
         "symfony/process": {
             "install-path": "vendor/symfony/process",
             "installer": "composer"
@@ -156,8 +168,8 @@
             "install-path": "vendor/webmozart/glob",
             "installer": "composer"
         },
-        "webmozart/key-value-store": {
-            "install-path": "vendor/webmozart/key-value-store",
+        "webmozart/json": {
+            "install-path": "vendor/webmozart/json",
             "installer": "composer"
         },
         "webmozart/path-util": {

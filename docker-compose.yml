@@ -1,8 +1,0 @@
-app:
-    image: mnapoli/php7-cli
-    ports:
-        - "8080:8000"
-    volumes:
-        - .:/app
-    working_dir: /app
-    command: "php -S 0.0.0.0:8000 -t web web/index.php"
