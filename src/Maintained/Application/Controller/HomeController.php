@@ -45,7 +45,7 @@ class HomeController
             'robbyrussell/oh-my-zsh' => 'Oh My Zsh',
         ];
 
-        echo $this->twig->render('home.twig', [
+        return $this->twig->render('/app/views/home.twig', [
             'latestRepositories' => $latestRepositories,
             'showcase'           => $showcase,
         ]);

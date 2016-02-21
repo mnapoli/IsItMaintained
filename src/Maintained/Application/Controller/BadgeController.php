@@ -8,6 +8,7 @@ use Maintained\Statistics\Statistics;
 use Maintained\Statistics\StatisticsProvider;
 use PUGX\Poser\Image;
 use PUGX\Poser\Poser;
+use Zend\Diactoros\Response;
 
 /**
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
@@ -55,11 +56,14 @@ class BadgeController
             }
         }
 
-        // Cache the badge for 1 day
-        header('Cache-Control: max-age=86400');
-        header('Content-type: image/svg+xml');
+        $response = new Response();
+        $response->getBody()->write($badge);
 
-        echo $badge;
+        // Cache the badge for 1 day
+        $response = $response->withHeader('Cache-Control', 'max-age=86400');
+        $response = $response->withHeader('Content-type', 'image/svg+xml');
+
+        return $response;
     }
 
     /**

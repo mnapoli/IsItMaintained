@@ -29,14 +29,12 @@ class ProjectController
             $statistics = $this->statisticsProvider->getStatistics($user, $repository);
         } catch (RuntimeException $e) {
             if ($e->getMessage() === 'Not Found') {
-                echo $this->twig->render('not-found.twig');
-                return;
+                return $this->twig->render('/app/views/not-found.twig');
             }
-            echo $this->twig->render('github-limit.twig');
-            return;
+            return $this->twig->render('/app/views/github-limit.twig');
         }
 
-        echo $this->twig->render('project.twig', [
+        return $this->twig->render('/app/views/project.twig', [
             'repository'     => $user . '/' . $repository,
             'resolutionTime' => $statistics->resolutionTime,
             'openedIssues'   => round($statistics->openIssuesRatio * 100),
