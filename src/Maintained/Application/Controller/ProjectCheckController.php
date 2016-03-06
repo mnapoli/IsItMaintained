@@ -35,7 +35,7 @@ class ProjectCheckController
             // Silence exception: the error will show on the badges
         }
 
-        return $this->twig->render('project-check.twig', [
+        return $this->twig->render('/app/views/project-check.twig', [
             'repository' => $user . '/' . $repository,
         ]);
     }
