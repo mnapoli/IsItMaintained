@@ -23,11 +23,6 @@ $config = [
     'directory.data' => __DIR__ . '/../../var/data',
     'directory.logs' => __DIR__ . '/../../var/logs',
 
-    // Piwik tracking
-    'piwik.enabled' => false,
-    'piwik.host' => null,
-    'piwik.site_id' => null,
-
     // GitHub API
     'github.auth_token' => null,
 

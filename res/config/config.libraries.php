@@ -17,7 +17,6 @@ use Maintained\Application\Twig\TwigExtension;
 use Maintained\Repository;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use PiwikTwigExtension\PiwikTwigExtension;
 use Psr\Log\LoggerInterface;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
@@ -43,10 +42,7 @@ return [
     // Twig
     'twig.extensions' => add([
         get(TwigExtension::class),
-        get(PiwikTwigExtension::class),
     ]),
-    PiwikTwigExtension::class => object()
-        ->constructor(get('piwik.host'), get('piwik.site_id'), get('piwik.enabled')),
 
     // Cache
     Cache::class => function (ContainerInterface $c) {

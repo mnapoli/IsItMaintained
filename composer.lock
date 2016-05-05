@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "899bb31213ba6c4d59486bdcccf2f229",
-    "content-hash": "ac8afeb3ac57a6cf0d9773cfda1ff96c",
+    "hash": "fc60ca82b7b88a8d18a9ed19ec0a7f02",
+    "content-hash": "ef8a56cfa34f3f89e18d26f5e92adaf2",
     "packages": [
         {
             "name": "aura/router",
@@ -653,39 +653,6 @@
                 "MIT"
             ],
             "time": "2015-01-07 08:42:09"
-        },
-        {
-            "name": "mnapoli/piwik-twig-extension",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mnapoli/PiwikTwigExtension.git",
-                "reference": "5171ab7221830a9d377add03dd60dbe6bd7b331f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mnapoli/PiwikTwigExtension/zipball/5171ab7221830a9d377add03dd60dbe6bd7b331f",
-                "reference": "5171ab7221830a9d377add03dd60dbe6bd7b331f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4",
-                "twig/twig": "~1.10"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PiwikTwigExtension\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "time": "2014-09-16 06:51:19"
         },
         {
             "name": "monolog/monolog",

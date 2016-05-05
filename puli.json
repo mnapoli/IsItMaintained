@@ -52,10 +52,6 @@
             "install-path": "vendor/mnapoli/blackbox",
             "installer": "composer"
         },
-        "mnapoli/piwik-twig-extension": {
-            "install-path": "vendor/mnapoli/piwik-twig-extension",
-            "installer": "composer"
-        },
         "monolog/monolog": {
             "install-path": "vendor/monolog/monolog",
             "installer": "composer"
