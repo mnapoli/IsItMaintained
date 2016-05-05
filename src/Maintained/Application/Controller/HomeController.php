@@ -32,7 +32,7 @@ class HomeController
 
         $showcase = [
             'rails/rails'            => 'Rails',
-            'mitsuhiko/flask'        => 'Flask',
+            'pallets/flask'          => 'Flask',
             'expressjs/express'      => 'Express',
             'symfony/symfony'        => 'Symfony',
             'zendframework/zf2'      => 'Zend Framework 2',
