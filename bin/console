@@ -1,37 +1,23 @@
 #!/usr/bin/env php
 <?php
 
-use DI\ContainerBuilder;
+use Maintained\Application\Application;
 use Maintained\Application\Command\ClearCacheCommand;
 use Maintained\Application\Command\ShowStatisticsCommand;
 use Maintained\Application\Command\UpdateStatisticsCommand;
 use Maintained\Application\Command\WarmupCacheCommand;
-use Symfony\Component\Console\Application;
 
+require_once __DIR__ . '/../.puli/GeneratedPuliFactory.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$modules = [
-    'error-handler',
-    'twig',
-    'app',
-];
-/** @var \Stratify\Framework\Application $app */
-$app = new class([], $modules) extends \Stratify\Framework\Application
-{
-    protected function createContainerBuilder(array $modules) : ContainerBuilder
-    {
-        $containerBuilder = parent::createContainerBuilder($modules);
-        $containerBuilder->useAnnotations(true);
-        return $containerBuilder;
-    }
-};
+$app = new Application;
 $container = $app->getContainer();
 
-$application = new Application('isitmaintained');
+$cli = $app->cli();
 
-$application->add($container->get(ClearCacheCommand::class));
-$application->add($container->get(WarmupCacheCommand::class));
-$application->add($container->get(ShowStatisticsCommand::class));
-$application->add($container->get(UpdateStatisticsCommand::class));
+$cli->add($container->get(ClearCacheCommand::class));
+$cli->add($container->get(WarmupCacheCommand::class));
+$cli->add($container->get(ShowStatisticsCommand::class));
+$cli->add($container->get(UpdateStatisticsCommand::class));
 
-$application->run();
+$cli->run();
