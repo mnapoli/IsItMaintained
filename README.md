@@ -46,3 +46,7 @@ API token (https://github.com/settings/applications) and set it in `parameters.p
 - PHP 7.0
 - [Puli](http://puli.io) installed
 - GD extension
+
+## Feature requests
+
+Issues are disabled for now on this repository because they were filling up with feature requests. If you want a feature to be added, pull requests are welcome.
