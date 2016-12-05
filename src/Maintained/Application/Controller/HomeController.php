@@ -35,7 +35,7 @@ class HomeController
             'pallets/flask'          => 'Flask',
             'expressjs/express'      => 'Express',
             'symfony/symfony'        => 'Symfony',
-            'zendframework/zf2'      => 'Zend Framework 2',
+            'zendframework/zendframework' => 'Zend Framework',
             'laravel/framework'      => 'Laravel',
             'angular/angular.js'     => 'AngularJS',
             'meteor/meteor'          => 'Meteor',
