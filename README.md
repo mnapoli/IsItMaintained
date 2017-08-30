@@ -1,6 +1,8 @@
 # Is It Maintained?
 
 Monitoring open source projects activity.
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mnapoli/IsItMaintained.svg)](http://isitmaintained.com/project/mnapoli/IsItMaintained "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/mnapoli/IsItMaintained.svg)](http://isitmaintained.com/project/mnapoli/IsItMaintained "Percentage of issues still open")
 
 ![](web/img/dude.png)
 
