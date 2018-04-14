@@ -36,6 +36,10 @@ class StatisticsComputer implements StatisticsProvider
         'wip',
         'rfc',
         'wishlist',
+        'question',
+        'cleanup',
+        'discussion',
+        'meta',
     ];
 
     /**
@@ -50,6 +54,10 @@ class StatisticsComputer implements StatisticsProvider
         '.*test.*',
         '.*suggestion.*',
         '.*refactoring.*',
+        '.*question.*',
+        '.*cleanup.*',
+        '.*discussion.*',
+        '.*meta.*',
         '(.*[\s\.-])?wip',
         '(.*[\s\.-])?rfc',
         '(.*[\s\.-])?poc',
