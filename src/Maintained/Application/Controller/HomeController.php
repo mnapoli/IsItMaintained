@@ -40,7 +40,7 @@ class HomeController
             'angular/angular.js'     => 'AngularJS',
             'meteor/meteor'          => 'Meteor',
             'facebook/react'         => 'React',
-            'ariya/phantomjs'        => 'PhantomJS',
+            'facebook/react-native'  => 'React Native',
             'gulpjs/gulp'            => 'Gulp',
             'robbyrussell/oh-my-zsh' => 'Oh My Zsh',
         ];
