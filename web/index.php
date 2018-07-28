@@ -1,6 +1,5 @@
 <?php
 
-use DI\ContainerBuilder;
 use Maintained\Application\Controller\BadgeController;
 use Maintained\Application\Controller\HomeController;
 use Maintained\Application\Controller\ProjectCheckController;
@@ -19,22 +18,17 @@ if (php_sapi_name() === 'cli-server' && is_file(__DIR__ . preg_replace('#(\?.*)$
     return false;
 }
 
+require_once __DIR__ . '/../.puli/GeneratedPuliFactory.php';
 require __DIR__ . '/../vendor/autoload.php';
-
-$modules = [
-    'error-handler',
-    'twig',
-    'app',
-];
 
 $http = pipe([
     ErrorHandlerMiddleware::class,
     MaintenanceMiddleware::class,
 
     router([
-        '/'                                      => route(HomeController::class, 'home'),
-        '/check/{user}/{repository}'             => route(ProjectCheckController::class, 'check-project'),
-        '/project/{user}/{repository}'           => route(ProjectController::class, 'project'),
+        '/' => route(HomeController::class, 'home'),
+        '/check/{user}/{repository}' => route(ProjectCheckController::class, 'check-project'),
+        '/project/{user}/{repository}' => route(ProjectController::class, 'project'),
         '/badge/{badge}/{user}/{repository}.svg' => route(BadgeController::class, 'badge'),
     ]),
 
@@ -42,17 +36,6 @@ $http = pipe([
     Error404Middleware::class,
 ]);
 
-/** @var Application $app */
-$app = new class($http, $modules) extends Application
-{
-    protected function createContainerBuilder(array $modules) : ContainerBuilder
-    {
-        $containerBuilder = parent::createContainerBuilder($modules);
-        $containerBuilder->useAnnotations(true);
-        return $containerBuilder;
-    }
-};
-
+$app = new Application;
 ErrorHandler::register($app->getContainer()->get(LoggerInterface::class));
-
-$app->runHttp();
+$app->http($http)->run();

@@ -16,6 +16,10 @@
             "install-path": "vendor/badges/poser",
             "installer": "composer"
         },
+        "coduo/phpspec-data-provider-extension": {
+            "install-path": "vendor/coduo/phpspec-data-provider-extension",
+            "installer": "composer"
+        },
         "container-interop/container-interop": {
             "install-path": "vendor/container-interop/container-interop",
             "installer": "composer"
@@ -26,6 +30,10 @@
         },
         "doctrine/cache": {
             "install-path": "vendor/doctrine/cache",
+            "installer": "composer"
+        },
+        "doctrine/instantiator": {
+            "install-path": "vendor/doctrine/instantiator",
             "installer": "composer"
         },
         "doctrine/lexer": {
@@ -52,12 +60,24 @@
             "install-path": "vendor/mnapoli/blackbox",
             "installer": "composer"
         },
+        "mnapoli/silly": {
+            "install-path": "vendor/mnapoli/silly",
+            "installer": "composer"
+        },
         "monolog/monolog": {
             "install-path": "vendor/monolog/monolog",
             "installer": "composer"
         },
+        "paragonie/random_compat": {
+            "install-path": "vendor/paragonie/random_compat",
+            "installer": "composer"
+        },
         "php-di/invoker": {
             "install-path": "vendor/php-di/invoker",
+            "installer": "composer"
+        },
+        "php-di/kernel": {
+            "install-path": "vendor/php-di/kernel",
             "installer": "composer"
         },
         "php-di/php-di": {
@@ -66,6 +86,30 @@
         },
         "php-di/phpdoc-reader": {
             "install-path": "vendor/php-di/phpdoc-reader",
+            "installer": "composer"
+        },
+        "phpdocumentor/reflection-common": {
+            "install-path": "vendor/phpdocumentor/reflection-common",
+            "installer": "composer"
+        },
+        "phpdocumentor/reflection-docblock": {
+            "install-path": "vendor/phpdocumentor/reflection-docblock",
+            "installer": "composer"
+        },
+        "phpdocumentor/type-resolver": {
+            "install-path": "vendor/phpdocumentor/type-resolver",
+            "installer": "composer"
+        },
+        "phpspec/php-diff": {
+            "install-path": "vendor/phpspec/php-diff",
+            "installer": "composer"
+        },
+        "phpspec/phpspec": {
+            "install-path": "vendor/phpspec/phpspec",
+            "installer": "composer"
+        },
+        "phpspec/prophecy": {
+            "install-path": "vendor/phpspec/prophecy",
             "installer": "composer"
         },
         "psr/http-message": {
@@ -98,6 +142,22 @@
         },
         "ramsey/uuid": {
             "install-path": "vendor/ramsey/uuid",
+            "installer": "composer"
+        },
+        "sebastian/comparator": {
+            "install-path": "vendor/sebastian/comparator",
+            "installer": "composer"
+        },
+        "sebastian/diff": {
+            "install-path": "vendor/sebastian/diff",
+            "installer": "composer"
+        },
+        "sebastian/exporter": {
+            "install-path": "vendor/sebastian/exporter",
+            "installer": "composer"
+        },
+        "sebastian/recursion-context": {
+            "install-path": "vendor/sebastian/recursion-context",
             "installer": "composer"
         },
         "seld/jsonlint": {
@@ -146,6 +206,10 @@
         },
         "symfony/process": {
             "install-path": "vendor/symfony/process",
+            "installer": "composer"
+        },
+        "symfony/yaml": {
+            "install-path": "vendor/symfony/yaml",
             "installer": "composer"
         },
         "twig/twig": {
