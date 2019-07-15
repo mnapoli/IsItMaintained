@@ -40,6 +40,7 @@ class StatisticsComputer implements StatisticsProvider
         'cleanup',
         'discussion',
         'meta',
+        'maintenance',
     ];
 
     /**
@@ -58,6 +59,7 @@ class StatisticsComputer implements StatisticsProvider
         '.*cleanup.*',
         '.*discussion.*',
         '.*meta.*',
+        '.*maintenance.*',
         '(.*[\s\.-])?wip',
         '(.*[\s\.-])?rfc',
         '(.*[\s\.-])?poc',
